@@ -77,7 +77,7 @@ module.exports = function (app) {
 
     app.get('/home', function (req, res) {
         //res.end("login page");
-        res.render('cal');
+        res.render('homepage');
     });
 
     app.get('/register', function (req, res) {
@@ -87,20 +87,24 @@ module.exports = function (app) {
 
 
     app.post('/signup', urlencodedParser ,function (req, res) {
-        console.log("here");
+        //console.log(req.body.password);
         const user = new RegisterUser({
-            username: "req.body.username",
-            password: "req.body.password",
-            email: "req.body.email"
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email
         });
-
-        user.save().then(function () {
+        
+//        alert("inside signup");
+            
+        user.save().then(function (result) {
             console.log("registered user" + username);
-            //res.json(result);
+            res.json(result);
         });
 
     });
 
+    
+    
 
     app.post('/login_check', urlencodedParser, function (req, res) {
 
