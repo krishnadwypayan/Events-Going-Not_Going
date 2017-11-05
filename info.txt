@@ -1,0 +1,144 @@
+var express = require('express');
+var cabController = require('./controller/cabController');
+
+
+var app = express();
+
+app.set('view engine','ejs');
+app.use('/assets',express.static('./stuff'));
+
+
+cabController(app);
+
+app.listen(4000,function(){
+  console.log("server cab controller  is running");
+});
+Chat Conver
+
+
+
+
+
+module.exports = function (app) {
+
+
+app.get('/login',function(req,res){
+
+    //res.end("login page");
+      res.render('login');
+});
+
+
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/mydb',{ useMongoClient: true });
+
+mongoose.connection.once('open',function(){
+
+  console.log("connected mongo db success");
+
+}).on('error',function(){
+
+  console.log("connection to  mongo db is failed");
+
+});
+
+
+
+const Schema = mongoose.Schema;
+///////////////////////////////////////////////////////////////////////////////////////
+const RegisterUserSchema = new Schema({
+
+  username:String,
+  password:String,
+  email:String
+
+});
+
+const RegisterUser = mongoose.model('registerusercollections',RegisterUserSchema);
+
+
+
+
+
+
+
+
+
+
+console.log("register_user_database");
+      console.log(req.body);
+
+      const user = new RegisterUser({
+        username:req.body.username,
+        password:req.body.password,
+        email:req.body.email
+      });
+
+      user.save().then(function(){
+            console.log("file inserted to register_user_database");
+      });
+      
+      
+      
+      
+      
+      
+      $.ajax({
+        type: 'POST',
+        url: '/check_for_username_login',
+        data: obj,
+        success: function(data){
+          //do something with the data via front-end framework
+          //location.reload();
+          //renderHtml(data);
+          console.log("inside sign in call back");
+          console.log(data);
+
+          if(data.length==1)
+          {
+              window.location.pathname="/home"
+          }
+          else
+          {
+            //alert("give proper user name");
+
+            $("#myModal").modal('show');
+          }
+
+
+        }
+      });
+
+
+
+
+
+
+
+
+
+$("#login_register_btn").click(function(){
+
+            $.ajax({
+              type: 'GET',
+              url: '/register',
+              success: function(data){
+                //do something with the data via front-end framework
+                //location.reload();
+                //renderHtml(data);
+
+                window.location.pathname="/register"
+              }
+            });
+
+            return false;
+          });
+
+
+
+
+
+
+var bodyParser = require('body-parser')
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
