@@ -2,11 +2,14 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({
     extended: false
 });
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
-///////////////Mongoose////
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+//......................................Mongoose..................................................
+
+
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/mydb', {
@@ -33,27 +36,29 @@ const RegisterUserSchema = new Schema({
 const RegisterUser = mongoose.model('registerusercollections', RegisterUserSchema);
 
 
-//const LoginUserSchema = new Schema({
-//
-//    username: String,
-//    password: String,
-//
-//});
+const CreateEventSchema = new Schema({
 
-//const LoginUser = mongoose.model('registerusercollections',LoginUserSchema);
+    eventname: String,
+    eventdesc: String,
+    startdate: String,
+    starttime: String,
+    enddate: String,
+    endtime: String
+
+});
+
+const CreateEvent = mongoose.model('eventscollections', CreateEventSchema);
 
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////Routing and Database//////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-
+//......................................Routing and Database..................................................
 
 
 module.exports = function (app) {
+
+
     app.get('/login', function (req, res) {
         //res.end("login page");
         res.render('login');
@@ -75,10 +80,10 @@ module.exports = function (app) {
     //          res.render('register');
     //    });
 
-    app.get('/home', function (req, res) {
-        //res.end("login page");
-        res.render('homepage');
-    });
+//    app.get('/home', function (req, res) {
+//        //res.end("login page");
+//        res.render('homepage');
+//    });
 
     app.get('/register', function (req, res) {
         //res.end("login page");
@@ -86,16 +91,19 @@ module.exports = function (app) {
     });
 
 
-    app.post('/signup', urlencodedParser ,function (req, res) {
+    app.post('/signup', urlencodedParser, function (req, res) {
         //console.log(req.body.password);
         const user = new RegisterUser({
             username: req.body.username,
             password: req.body.password,
             email: req.body.email
         });
-        
-//        alert("inside signup");
-            
+
+        //        alert("inside signup");
+
+        //        
+
+
         user.save().then(function (result) {
             console.log("registered user" + username);
             res.json(result);
@@ -103,8 +111,31 @@ module.exports = function (app) {
 
     });
 
-    
-    
+
+
+    app.post('/create_event', urlencodedParser, function (req, res) {
+
+        //console.log("req.body.eventname");
+
+        const newevent = new CreateEvent({
+
+            eventname: req.body.eventname,
+            eventdesc: req.body.eventdesc,
+            startdate: req.body.startdate,
+            starttime: req.body.starttime,
+            enddate: req.body.enddate,
+            endtime: req.body.endtime
+
+        });
+
+        newevent.save().then(function (result) {
+            console.log("created event" + eventname);
+            res.json(result);
+        });
+
+    });
+
+
 
     app.post('/login_check', urlencodedParser, function (req, res) {
 
@@ -112,8 +143,8 @@ module.exports = function (app) {
         //username:req.body.username,
         //password:req.body.password,  
 
-        console.log(req.body.username);
-        console.log(req.body.password);
+        //console.log(req.body.username);
+        //console.log(req.body.password);
 
         RegisterUser.find({
             username: req.body.username,
@@ -125,5 +156,22 @@ module.exports = function (app) {
 
     });
 
+
+    app.get('/home', function(req, res) {
+        
+        CreateEvent.find({}, function(err, result) {
+            console.log(result);
+            res.render('homepage', {
+                "eventslist" : result
+            });
+        });
+        
+    });
+    
+    
+    app.get('/time', function(req, res) {
+        res.render('time');
+    })
+    
 
 };
