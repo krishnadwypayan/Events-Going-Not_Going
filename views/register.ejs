@@ -61,9 +61,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Login</h4>
+                        <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
+                        <!--                    <i style="display: inline-block; margin-right: 1.5em;" class="glyphicon glyphicon-calendar"></i>-->
+                        <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
                     </div>
                     <div class="modal-body">
+
+
                         <div id="eventForm" style="margin: 2em;">
 
                             <form>
@@ -75,16 +79,13 @@
                                     </div>
                                     <div class="input-group" style="margin: 1.5em;">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input class="form-control" id="password" type="password" name="password" placeholder="Password" data-content="" data-toggle="tooltip" data-placement="right" data-analytics="AuthPageInput" data-attr1="Password" data-attr2="Signup" data-attr3="master" />
-                                    </div>
-                                    <div style="margin: 1.5em;">
-                                        <p class="text-center">
-                                            <!--button click connect to db-->
-                                            <button class="btn btn-success" id="login_btn_modal" name="commit" value="request" data-analytics="SignupPassword" style="background-color: darkseagreen;"><font size="3" color="white">Log In</font></button>
-                                        </p>
-                                        <hr>
+                                        <input class="form-control" id="pass" type="password" name="password" placeholder="Password" data-content="" data-toggle="tooltip" data-placement="right" data-analytics="AuthPageInput" data-attr1="Password" data-attr2="Signup" data-attr3="master" />
                                     </div>
 
+                                    <hr>
+
+
+                                    <!--
                                     <div style="margin-top: 2em;">
                                         <p>
                                             <font size="3">Or connect with :</font>
@@ -92,17 +93,11 @@
                                         <a class="btn btn-primary social-login-btn social-facebook" style="display: inline-block; margin-bottom: 2em; height: 2.8em; width: 2.8em;" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
                                         <a class="btn btn-danger social-login-btn social-google" style="display: inline-block; margin-left: 1em; margin-bottom: 2em; height: 2.8em; width: 2.8em;" href="/auth/google"><i class="fa fa-google-plus"></i></a>
                                         <a class="btn btn-primary social-login-btn social-linkedin" style="display: inline-block; margin-bottom: 2em; height: 2.8em; width: 2.8em; margin-left: 1em;" href="/auth/linkedin"><i class="fa fa-linkedin"></i></a>
-                                        <p>
-                                            <!--new user href to register page-->
-                                            <font size="3" style="color: cadetblue;">New user? Register now!</font>
-                                        </p>
+                                        
                                     </div>
+-->
 
-                                    <p style="color: black">
-                                        <!--href to 404 page-->
-                                        <font size="2" color="black"><i>
-                            By signing up you agree to our <a target="_blank" href="/public/404.html" style="color: black">Terms of Service</a> and <a target="_blank" href="/public/404.html" style="color: black;">Privacy Policy</font></a></i>
-                                    </p>
+
                                 </div>
 
                             </form>
@@ -110,10 +105,39 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="signupModal_btn" class="btn btn-default" data-dismiss="modal">Proceed to Login</button>
+                        <button type="button" id="login_btn_modal" class="btn btn-default" data-dismiss="modal" style="background-color: darkseagreen;"><font size="3" color="white">Login</font></button>
                     </div>
                 </div>
             </center>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="signupModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <center>
+                        <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
+                        <!--                    <i style="display: inline-block; margin-right: 1.5em;" class="glyphicon glyphicon-calendar"></i>-->
+                        <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
+                    </center>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-title">Registration Successful</h4>
+                    <p style="margin: 1.5em;">Welcome to NotifyMe!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="signupModal_btn" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Proceed to Login</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -160,18 +184,22 @@
                             </div>
                             <div class="input-group" style="margin-top: 1em;">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input class="form-control" id="password" type="password" name="password" placeholder="Password" data-content="" data-toggle="tooltip" data-placement="right" data-analytics="AuthPageInput" data-attr1="Password" data-attr2="Signup" data-attr3="master" required/>
+                                <input class="form-control" id="password" type="password" placeholder="Password" required/>
                             </div>
                             <div>
                                 <p class="text-center" style="margin-top: 1em;">
-                                    <button id="signup_btn" class="btn btn-success btn-block" name="commit" value="request" type="button" data-attr1="master" style="background-color: darkseagreen;"><font size="3" color="white" data-toggle="modal" data-target="#signupModal">Sign Up & Create Events</font></button>
+                                    <button id="signup_btn" class="btn btn-success btn-block" name="commit" value="request" type="button" style="background-color: darkseagreen;"><font size="3" color="white" data-toggle="modal" data-target="#signupModal" >Sign Up &amp; Create Events</font></button>
                                 </p>
 
 
                                 <!--
                                 <button id="signup_btn" type="button">Sign Up & Create Events</button>
                                 
+                                
+                                
 -->
+
+
                                 <hr>
                             </div>
                         </div>
@@ -215,26 +243,7 @@
         </center>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="signupModal" role="dialog">
-        <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Registration Successful</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Welcome to NotifyMe!</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="signupModal_btn" class="btn btn-default" data-dismiss="modal">Proceed to Login</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
 
 
     <!-- jQuery -->
@@ -272,26 +281,26 @@
                         console.log("inside sign up call back");
                         console.log(data);
 
-                        //$("#signupModal").modal('show');
+                        //$("#signupModal").modal('toggle');
                     }
                 });
             });
 
-            $("#signupModal_btn").click(function() {
-                $.ajax({
-                    type: 'GET',
-                    url: '/login',
-                    success: function(data) {
-                        //do something with the data via front-end framework
-                        //location.reload();
-                        //renderHtml(data);
-
-                        window.location.pathname = '/login'
-                    }
-                });
-
-                return false;
-            });
+            //            $("#signupModal_btn").click(function() {
+            //                $.ajax({
+            //                    type: 'GET',
+            //                    url: '/login',
+            //                    success: function(data) {
+            //                        //do something with the data via front-end framework
+            //                        //location.reload();
+            //                        //renderHtml(data);
+            //
+            //                        window.location.pathname = "/login"
+            //                    }
+            //                });
+            //
+            //                return false;
+            //            });
 
 
             $("#login_btn_modal").click(function() {
