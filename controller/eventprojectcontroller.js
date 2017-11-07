@@ -38,16 +38,38 @@ const RegisterUser = mongoose.model('registerusercollections', RegisterUserSchem
 
 const CreateEventSchema = new Schema({
 
+    username: String,
     eventname: String,
     eventdesc: String,
     startdate: String,
     starttime: String,
     enddate: String,
-    endtime: String
+    endtime: String,
+    location: String,
+    contact: String,
+    capacity: Number
 
 });
 
 const CreateEvent = mongoose.model('eventscollections', CreateEventSchema);
+
+
+
+
+const personalisedDBSchema = new Schema({
+
+    username: String,
+    eventname: String,
+    startdate: String,
+    starttime: String,
+    enddate: String,
+    endtime: String,
+    location: String,
+    capacity: Number
+
+});
+
+const personalEvent = mongoose.model('personalisedcollections', personalisedDBSchema);
 
 
 
@@ -80,10 +102,10 @@ module.exports = function (app) {
     //          res.render('register');
     //    });
 
-//    app.get('/home', function (req, res) {
-//        //res.end("login page");
-//        res.render('homepage');
-//    });
+    //    app.get('/home', function (req, res) {
+    //        //res.end("login page");
+    //        res.render('homepage');
+    //    });
 
     app.get('/register', function (req, res) {
         //res.end("login page");
@@ -119,18 +141,31 @@ module.exports = function (app) {
 
         const newevent = new CreateEvent({
 
+            username: req.body.username,
             eventname: req.body.eventname,
             eventdesc: req.body.eventdesc,
             startdate: req.body.startdate,
             starttime: req.body.starttime,
             enddate: req.body.enddate,
-            endtime: req.body.endtime
+            endtime: req.body.endtime,
+            location: req.body.location,
+            contact: req.body.contact,
+            capacity: req.body.capacity
+
 
         });
 
         newevent.save().then(function (result) {
             console.log("created event" + eventname);
+
             res.json(result);
+
+            //            CreateEvent.find({}, function (err, result) {
+            //                console.log(result);
+            //                res.render('homepage', {
+            //                    "eventslist": result
+            //                });
+            //            });
         });
 
     });
@@ -146,32 +181,36 @@ module.exports = function (app) {
         //console.log(req.body.username);
         //console.log(req.body.password);
 
-        RegisterUser.find({
-            username: req.body.username,
-            password: req.body.password
-        }).then(function (result) {
+        var username_retrieve = req.body.username;
+        console.log(username_retrieve);
+
+        RegisterUser.find({username: req.body.username, password: req.body.password}).then(function (result) {
             console.log("Username password match");
+            console.log(result);
             res.json(result);
-        })
+
+
+
+        });
 
     });
 
 
-    app.get('/home', function(req, res) {
-        
-        CreateEvent.find({}, function(err, result) {
+    app.get('/home', function (req, res) {
+
+        CreateEvent.find({}, function (err, result) {
             console.log(result);
             res.render('homepage', {
-                "eventslist" : result
+                "eventslist": result
             });
         });
-        
+
     });
-    
-    
-    app.get('/time', function(req, res) {
-        res.render('time');
+
+
+    app.get('/createEvent', function (req, res) {
+        res.render('createEvent');
     })
-    
+
 
 };
