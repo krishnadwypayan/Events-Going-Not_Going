@@ -9,15 +9,15 @@
     <link rel="icon" type="image/gif/png" href="datelogo.png">
     <!-- Bootstrap CSS -->
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
 
 
-    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 
 
@@ -29,8 +29,8 @@
 		<![endif]-->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
-    
+
+
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
     <style>
@@ -76,7 +76,7 @@
 <body>
 
     <!-- Modal -->
-    <div class="modal fade" id="eventCreatedModal" role="dialog">
+    <div class="modal fade" id="eventCreatedModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -170,11 +170,14 @@
             </div>
 
             <ul class="nav navbar-nav mr-auto" style="margin-top: 0.5em; margin-left: 60em;">
-                <button type="button" id="create_event" class="nav-item active" data-toggle="modal" data-target="#createEventModal">Create Event</button>
+                <button type="button" id="create_event_navbar_btn" class="nav-item active">Create Event</button>
             </ul>
 
         </div>
     </nav>
+
+
+
     <div class="jumbotron jumbotron-fluid" style="margin-top: -1em;">
 
         <h2 style="margin-left: 2em; margin-top: -1em; margin-bottom: 1em;">
@@ -195,14 +198,14 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
-                                    <p id="event_start_date" style="display: inline-block;"></p>&nbsp;&#64;
+                                    <p id="event_start_date1" style="display: inline-block;"></p>&nbsp;&#64;
                                     <span style="display: inline-block;"></span>
-                                    <p id="event_start_time" style="display: inline-block;">11:11pm</p>
+                                    <p id="event_start_time1" style="display: inline-block;">11:11pm</p>
                                 </li>
                                 <li class="list-group-item">
-                                    <p id="event_end_date" style="display: inline-block;">11/11/11</p>&nbsp;&#64;
+                                    <p id="event_end_date1" style="display: inline-block;">11/11/11</p>&nbsp;&#64;
                                     <span style="display: inline-block;"></span>
-                                    <p id="event_end_time" style="display: inline-block;">11:11pm</p>
+                                    <p id="event_end_time1" style="display: inline-block;">11:11pm</p>
                                 </li>
                             </ul>
                             <div class="card-block">
@@ -299,70 +302,22 @@
     </div>
 
 
-    <div style="margin-top: 10em;"></div>
+    <div style="margin-top: 10em;">
+        <p id="username_print"></p>
+    </div>
 
-    <script>
-        
+
+    <div style="margin: 2em; margin-right: 6em;">
+        <table class="table" id="events_table" style="margin: 2em; margin-right: 6em;"></table>
+    </div>
+
+
+    <script type="text/javascript">
         $(document).ready(function() {
-
-            console.log("login document ready");
-
-            $('#start_date').datepicker();
-            $('#end_date').datepicker();
-
-
-
-            $('.timepicker').timepicker({
-                timeFormat: 'h:mm p',
-                interval: 15,
-                minTime: '10',
-                maxTime: '11:00pm',
-                defaultTime: '11',
-                startTime: '10:00',
-                dynamic: true,
-                dropdown: true,
-                scrollbar: true,
-            });
-
-
-            $("#create_event_btn").click(function() {
-
-                var eventname = document.getElementById("event_name").value;
-                var eventdesc = document.getElementById("event_desc").value;
-                var startdate = document.getElementById("start_date").value;
-                var starttime = document.getElementById("start_time").value;
-                var enddate = document.getElementById("end_date").value;
-                var endtime = document.getElementById("end_time").value;
-
-
-                var data = {
-                    eventname: eventname,
-                    eventdesc: eventdesc,
-                    startdate: startdate,
-                    starttime: starttime,
-                    enddate: enddate,
-                    endtime: endtime
-
-                };
-
-                //alert(eventname + eventdesc + startdate + starttime + enddate + endtime);
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/create_event',
-                    data: data,
-                    success: function(data) {
-                        //do something with the data via front-end framework
-                        //location.reload();
-                        //renderHtml(data);
-                        console.log("inside create event call back");
-                        console.log(data);
-
-                        //$("#signupModal").modal('show');
-                    }
-                });
-            });
-
+            
+            var username_print=localStorage.getItem("username_local");
+            document.getElementById("username_print").innerHTML = username_print;
+            
 
             $(function() {
 
@@ -399,12 +354,22 @@
 
             });
 
-            //            $("#create_event").click(function() {
-            //                
-            //            });
+
+            $("#create_event_navbar_btn").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/createEvent',
+                    success: function(data) { //do something with the data via front-end framework //location.reload(); //renderHtml(data); 
+
+                        window.location.pathname = "/createEvent"
+                    }
+                });
+                return false;
+            });
+
         });
-        
-        
+
+
         var events = <%- JSON.stringify(eventslist);%>
         console.log(events);
 
@@ -420,10 +385,10 @@
 
             document.getElementById("event_name_card1").innerHTML = eventname;
             document.getElementById("event_desc_card1").innerHTML = eventdesc;
-            document.getElementById("event_start_date").innerHTML = startdate;
-            document.getElementById("event_start_time").innerHTML = starttime;
-            document.getElementById("event_end_date").innerHTML = enddate;
-            document.getElementById("event_end_time").innerHTML = endtime;
+            document.getElementById("event_start_date1").innerHTML = startdate;
+            document.getElementById("event_start_time1").innerHTML = starttime;
+            document.getElementById("event_end_date1").innerHTML = enddate;
+            document.getElementById("event_end_time1").innerHTML = endtime;
         }
 
 
@@ -465,12 +430,43 @@
         }
 
 
+        for (var i = 0; i < events.length; i++) {
+            var eventname = events[i].eventname;
+            var eventdesc = events[i].eventdesc;
+            var startdate = events[i].startdate;
+            var starttime = events[i].starttime;
+            var enddate = events[i].enddate;
+            var endtime = events[i].endtime;
+
+            //alert(eventname);
+
+            var tdata = "<tr><td>" + eventname + "</td><td colspan=\"2\">" + eventdesc + "</td><td>" + startdate + "</td><p>&nbsp; &#64; </p> <td>" + starttime + "</td><p>&nbsp; &#64;</p><td>" + enddate + "</td><td>" + endtime + "</td></tr>";
+            $("#events_table").prepend(tdata);
+            console.log(eventname);
+            //console.log(tdata);
+        }
+            
+            
+            ////            
+//            
+//            
+//            $("#events_table").prepend(tData);
+//
+////            document.getElementById("event_name_card3").innerHTML = eventname;
+////            document.getElementById("event_desc_card3").innerHTML = eventdesc;
+////            document.getElementById("event_start_date3").innerHTML = startdate;
+////            document.getElementById("event_start_time3").innerHTML = starttime;
+////            document.getElementById("event_end_date3").innerHTML = enddate;
+////            document.getElementById("event_end_time3").innerHTML = endtime;
+//        }
+
     </script>
 
 
     <!-- jQuery -->
     <script src="//code.jquery.com/jquery.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 

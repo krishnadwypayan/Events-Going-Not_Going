@@ -242,9 +242,10 @@
             </p>
         </center>
     </div>
-
-
-
+    
+    
+    
+    
 
     <!-- jQuery -->
     <script src="//code.jquery.com/jquery.js"></script>
@@ -253,6 +254,9 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 
     <script>
+        
+
+        
         $(document).ready(function() {
 
             console.log("signup document ready");
@@ -305,7 +309,10 @@
 
             $("#login_btn_modal").click(function() {
                 var name = document.getElementById("name").value;
-                var password = document.getElementById("password").value;
+                var password = document.getElementById("pass").value;
+                
+                localStorage.setItem("username_local", $("#name").val());
+                
                 var data = {
                     username: name,
                     password: password
@@ -323,7 +330,10 @@
                         console.log("inside sign in call back");
                         console.log(data);
 
-                        if (data.length == 1) {
+                        //alert(name);
+                        
+                        if (data.length >= 1) {
+                            
                             window.location.pathname = "/home"
                         } else {
                             alert("Invalid Username/password");
