@@ -56,20 +56,27 @@ const CreateEvent = mongoose.model('eventscollections', CreateEventSchema);
 
 
 
-const personalisedDBSchema = new Schema({
+const requestEventSchema = new Schema({
 
     username: String,
     eventname: String,
-    startdate: String,
-    starttime: String,
-    enddate: String,
-    endtime: String,
-    location: String,
-    capacity: Number
 
 });
 
-const personalEvent = mongoose.model('personalisedcollections', personalisedDBSchema);
+const requestEvent = mongoose.model('requesteventscollections', requestEventSchema);
+
+
+
+
+const approveUserSchema = new Schema({
+
+    creator: String,
+    user_attending: String,
+    eventname: String
+
+});
+
+const approveUser = mongoose.model('approveuserscollections', approveUserSchema);
 
 
 
@@ -137,8 +144,6 @@ module.exports = function (app) {
 
     app.post('/create_event', urlencodedParser, function (req, res) {
 
-        //console.log("req.body.eventname");
-
         const newevent = new CreateEvent({
 
             username: req.body.username,
@@ -150,15 +155,16 @@ module.exports = function (app) {
             endtime: req.body.endtime,
             location: req.body.location,
             contact: req.body.contact,
-            capacity: req.body.capacity
+            capacity: req.body.capacity,
 
 
         });
 
         newevent.save().then(function (result) {
             console.log("created event" + eventname);
+            res.render('homepage');
 
-            res.json(result);
+            //res.render('/home');
 
             //            CreateEvent.find({}, function (err, result) {
             //                console.log(result);
@@ -184,7 +190,10 @@ module.exports = function (app) {
         var username_retrieve = req.body.username;
         console.log(username_retrieve);
 
-        RegisterUser.find({username: req.body.username, password: req.body.password}).then(function (result) {
+        RegisterUser.find({
+            username: req.body.username,
+            password: req.body.password
+        }).then(function (result) {
             console.log("Username password match");
             console.log(result);
             res.json(result);
@@ -210,7 +219,91 @@ module.exports = function (app) {
 
     app.get('/createEvent', function (req, res) {
         res.render('createEvent');
-    })
+    });
+
+
+    app.post('/viewEvent', function (req, res) {
+
+        CreateEvent.find({}, function (err, result) {
+            console.log(result);
+            res.json(result);
+        });
+
+    });
+
+
+    app.post('/request_btn_clicked', urlencodedParser, function (req, res) {
+        //console.log(req.body.password);
+
+        const request = new requestEvent({
+            username: req.body.username_request,
+            eventname: req.body.eventname_request
+        });
+
+        console.log(request.username + " request kiya ");
+
+        request.save().then(function (result) {
+            console.log("requested for entry to " + eventname_request + " by " + username);
+            res.json(result);
+        });
+
+    });
+
+
+    app.get('/notify', function (req, res) {
+        res.render('notifications');
+    });
+
+
+    app.post('/getEventnameForNotification', urlencodedParser, function (req, res) {
+
+        var creator = req.body.creator;
+        console.log("getting event created by " + creator);
+
+
+        CreateEvent.find({
+            username: creator,
+        }).then(function (result) {
+            console.log("getEventFor..." + result);
+            res.json(result);
+        });
+
+
+
+    });
+
+    app.post('/getNotifications', urlencodedParser, function (req, res) {
+
+        var eventname = req.body.eventname;
+        console.log("idhar shayaddikkat hai " + eventname);
+        requestEvent.find({
+            eventname: eventname,
+        }).then(function (result) {
+            console.log("gadbad..." + result);
+            res.json(result);
+        });
+    });
+
+
+
+    app.post('/approve_btn_clicked', urlencodedParser, function (req, res) {
+        //console.log(req.body.password);
+
+        var eventname = req.body.eventname;
+        console.log(req.body.eventname + " ko approve kiya ");
+
+        CreateEvent.findOneAndUpdate({
+            eventname: eventname
+        }, {
+            $inc: {
+                capacity: "-1"
+            }
+        }).then(function (err, result) {
+            console.log(result.capacity);
+            res.json(result);
+        });
+
+    });
 
 
 };
