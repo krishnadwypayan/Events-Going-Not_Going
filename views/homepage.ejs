@@ -102,6 +102,10 @@
 
 
 
+
+
+
+
     <div class="modal fade" id="createEventModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -169,8 +173,20 @@
                 <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
             </div>
 
-            <ul class="nav navbar-nav mr-auto" style="margin-top: 0.5em; margin-left: 60em;">
-                <button type="button" id="create_event_navbar_btn" class="nav-item active">Create Event</button>
+            <ul class="nav navbar-nav mr-auto" style="margin-top: -1.8em; margin-left: 50em; display: inline-block;">
+                <li>
+                    <button type="button" id="create_event_navbar_btn" class="nav-item active">Create Event</button>
+                </li>
+                <li>
+                    <button type="button" id="view_event_navbar_btn" class="nav-item active" style="margin-left: 2em;">View Events</button>
+                </li>
+                <li>
+                    <button type="button" style="margin-left: 1em;" id="profile_name">Guest</button>
+                </li>
+
+                <li>
+                    <button type="button" id="logout_navbar_btn" class="nav-item active" style="margin-left: 2em;">Log Out</button>
+                </li>
             </ul>
 
         </div>
@@ -303,7 +319,6 @@
 
 
     <div style="margin-top: 10em;">
-        <p id="username_print"></p>
     </div>
 
 
@@ -311,13 +326,18 @@
         <table class="table" id="events_table" style="margin: 2em; margin-right: 6em;"></table>
     </div>
 
+    <div style="margin-top: 10em;">
+    </div>
+
 
     <script type="text/javascript">
+        //function requestBtnClicked(data);
+
         $(document).ready(function() {
-            
-            var username_print=localStorage.getItem("username_local");
-            document.getElementById("username_print").innerHTML = username_print;
-            
+
+            var username_print = localStorage.getItem("username_local");
+            document.getElementById("profile_name").innerHTML = username_print;
+
 
             $(function() {
 
@@ -355,6 +375,8 @@
             });
 
 
+
+
             $("#create_event_navbar_btn").click(function() {
                 $.ajax({
                     type: 'GET',
@@ -367,8 +389,133 @@
                 return false;
             });
 
+
+
+            $("#logout_navbar_btn").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/register',
+                    success: function(data) { //do something with the data via front-end framework //location.reload(); //renderHtml(data); 
+
+                        window.location.pathname = "/register"
+                    }
+                });
+                return false;
+            });
+            
+            
+            
+
+
+            $("#profile_name").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/notify',
+                    success: function(data) {
+                        window.location.pathname = "/notify"
+                        console.log("welcome");
+                    }
+
+                });
+                return false;
+            });
+
+
+
+
+            $("#view_event_navbar_btn").click(function() {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/viewEvent',
+                    success: function(data) {
+
+                        console.log(data);
+                        var events = data;
+
+                        $("#events_table").empty();
+                        for (var i = events.length - 1; i >= 0; i--) {
+                            var eventname = events[i].eventname;
+                            var eventdesc = events[i].eventdesc;
+                            var startdate = events[i].startdate;
+                            var starttime = events[i].starttime;
+                            var enddate = events[i].enddate;
+                            var endtime = events[i].endtime;
+
+                            //alert(eventname);
+
+                            var tdata = "<tr><td>" + eventname + "</td><td colspan=\"2\">" + eventdesc + "</td><td>" + startdate + "</td><p>&nbsp; &#64; </p> <td>" + starttime + "</td><p>&nbsp; &#64;</p><td>" + enddate + "</td><td>" + endtime + "</td>" + "<td><button class=\"btn btn-default\" id=\"btnTable" + i + "\" type=\"button\">Interested</button></td>" + "</tr>";
+
+                            $("#events_table").prepend(tdata);
+                            console.log(eventname);
+                            //console.log(tdata);
+
+                        }
+
+                        $('#events_table').find('tr').click(function() {
+
+                            var i = $(this).index();
+
+                            //                            var count = 1;
+                            //                            $("#btnTable" + i).click(function() {
+                            //                                var property = document.getElementById("#btnTable"+i);
+                            //                                if (count == 0) {
+                            //                                    property.style.backgroundColor = "#13f513";
+                            //                                    count = 1;
+                            //                                }
+                            //
+                            //                            });
+
+                            var username_request = username_print;
+                            var eventname_request = events[i].eventname;
+                            var data = {
+                                username_request: username_request,
+                                eventname_request: eventname_request
+                            };
+
+                            console.log(data);
+                            alert(data.username_request + " " + data.eventname_request);
+
+
+                            $.ajax({
+                                type: 'POST',
+                                url: '/request_btn_clicked',
+                                data: data,
+                                success: function(data) {
+                                    //do something with the data via front-end framework
+                                    //location.reload();
+                                    //renderHtml(data);
+                                    console.log("inside request event call back");
+                                    console.log(data);
+
+                                    //alert(name);
+
+                                    if (data.length >= 1) {
+
+                                        window.location.pathname = "/home"
+                                    } else {
+                                        alert("Invalid Username/password");
+                                        //$("#badLoginModal").modal('show');
+                                    }
+                                }
+                            });
+
+
+                        });
+
+                    }
+                });
+            });
+
+
+
+
+
+
+            //....document ready ends here....
         });
 
+        //..........................................................................................................
 
         var events = <%- JSON.stringify(eventslist);%>
         console.log(events);
@@ -430,35 +577,20 @@
         }
 
 
-        for (var i = 0; i < events.length; i++) {
-            var eventname = events[i].eventname;
-            var eventdesc = events[i].eventdesc;
-            var startdate = events[i].startdate;
-            var starttime = events[i].starttime;
-            var enddate = events[i].enddate;
-            var endtime = events[i].endtime;
 
-            //alert(eventname);
 
-            var tdata = "<tr><td>" + eventname + "</td><td colspan=\"2\">" + eventdesc + "</td><td>" + startdate + "</td><p>&nbsp; &#64; </p> <td>" + starttime + "</td><p>&nbsp; &#64;</p><td>" + enddate + "</td><td>" + endtime + "</td></tr>";
-            $("#events_table").prepend(tdata);
-            console.log(eventname);
-            //console.log(tdata);
-        }
-            
-            
-            ////            
-//            
-//            
-//            $("#events_table").prepend(tData);
-//
-////            document.getElementById("event_name_card3").innerHTML = eventname;
-////            document.getElementById("event_desc_card3").innerHTML = eventdesc;
-////            document.getElementById("event_start_date3").innerHTML = startdate;
-////            document.getElementById("event_start_time3").innerHTML = starttime;
-////            document.getElementById("event_end_date3").innerHTML = enddate;
-////            document.getElementById("event_end_time3").innerHTML = endtime;
-//        }
+        ////            
+        //            
+        //            
+        //            $("#events_table").prepend(tData);
+        //
+        ////            document.getElementById("event_name_card3").innerHTML = eventname;
+        ////            document.getElementById("event_desc_card3").innerHTML = eventdesc;
+        ////            document.getElementById("event_start_date3").innerHTML = startdate;
+        ////            document.getElementById("event_start_time3").innerHTML = starttime;
+        ////            document.getElementById("event_end_date3").innerHTML = enddate;
+        ////            document.getElementById("event_end_time3").innerHTML = endtime;
+        //        }
 
     </script>
 

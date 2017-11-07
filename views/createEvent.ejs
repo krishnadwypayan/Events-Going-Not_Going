@@ -93,6 +93,31 @@
 
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="eventModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <center>
+                        <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
+                        <!--                    <i style="display: inline-block; margin-right: 1.5em;" class="glyphicon glyphicon-calendar"></i>-->
+                        <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
+                    </center>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-title">Event Created</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="eventModal_btn" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Home</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
 
     <div class="jumbotron jumbotron-fluid" style="margin-top: -1em;">
@@ -108,12 +133,14 @@
                         <form>
 
                             <div style="width:450px; margin-top: 2.5em;">
-                               
-                               <div class="input-group" style="margin: 1.5em;">
+
+<!--
+                                <div class="input-group" style="margin: 1.5em;">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                     <input class="form-control" id="event_username" type="text" value="" placeholder="Username" data-placement="right" style="min-width: 100%;" required/>
                                 </div>
-                               
+-->
+
                                 <div class="input-group" style="margin: 1.5em;">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                     <input class="form-control" id="event_name" type="text" value="" placeholder="Event Name" data-placement="right" style="min-width: 100%;" required/>
@@ -139,7 +166,7 @@
 
                                     <input id="end_time" class="timepicker" style="min-width: 100%; margin-top: 0.3em;" />
                                 </div>
-                                
+
                                 <div class="input-group" style="margin: 1.5em;">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                     <input class="form-control" id="event_capacity" type="number" value="" placeholder="Capacity" data-placement="right" style="min-width: 100%; height: 2.5em;" min="1" max="500" required/>
@@ -149,7 +176,7 @@
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                     <input class="form-control" id="event_location" type="text" value="" placeholder="Location" data-placement="right" style="min-width: 100%;" required/>
                                 </div>
-                                
+
                                 <div class="input-group" style="margin: 1.5em;">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                     <input class="form-control" id="event_contact" type="text" value="" placeholder="Contact Number" data-placement="right" style="min-width: 100%;" required/>
@@ -162,8 +189,8 @@
                                     </p>
                                     <hr>
                                 </div>
-                                
-                                
+
+
                             </div>
                         </form>
 
@@ -202,24 +229,35 @@
 
             $("#create_event_btn").click(function() {
 
+                var username = localStorage.getItem("username_local");
+
                 var eventname = document.getElementById("event_name").value;
                 var eventdesc = document.getElementById("event_desc").value;
                 var startdate = document.getElementById("start_date").value;
                 var starttime = document.getElementById("start_time").value;
                 var enddate = document.getElementById("end_date").value;
                 var endtime = document.getElementById("end_time").value;
+                var location = document.getElementById("event_location").value;
+                var contact = document.getElementById("event_contact").value;
+                var capacity = document.getElementById("event_capacity").value;
 
 
                 var data = {
+
+                    username: username,
                     eventname: eventname,
                     eventdesc: eventdesc,
                     startdate: startdate,
                     starttime: starttime,
                     enddate: enddate,
-                    endtime: endtime
+                    endtime: endtime,
+                    location: location,
+                    contact: contact,
+                    capacity: capacity,
 
                 };
-
+                
+                console.log(data.capacity + " " + data.contact + " " + data.location);
                 //alert(eventname + eventdesc + startdate + starttime + enddate + endtime);
 
                 $.ajax({
@@ -233,7 +271,7 @@
                         console.log("inside create event call back");
                         console.log(data);
 
-                        window.location.pathname = "/home"
+                        //window.location.pathname = "/home"
                         //$("#signupModal").modal('show');
                     }
                 });

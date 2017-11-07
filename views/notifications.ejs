@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login|NotifyMe</title>
+    <link rel="icon" type="image/gif/png" href="/stuff/datelogo.png">
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+    <style>
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+
+        .jumbotron {
+            position: inherit;
+            background: #000 url("eventsback.jpg") center center;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            overflow: hidden;
+            background-blend-mode: lighten;
+        }
+
+        .above {
+            margin-bottom: 10px;
+        }
+
+
+        .affix {
+            top: 0;
+            width: 100%;
+            z-index: 9999 !important;
+        }
+
+        .affix+.container-fluid {
+            padding-top: 0px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container above">
+    </div>
+    <!--nav bar-->
+    <nav class="navbar navbar-light" data-spy="affix" data-offset-top="10">
+        <div class="container-fluid" style="background-color: white;">
+            <div class="navbar-header">
+
+                <!--brand name click-->
+                <!--                <a class="navbar-brand" href="/public/index.html">-->
+
+                <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
+                <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <div class="jumbotron jumbotron-fluid" style="margin-top: -1em;">
+
+        <div style="background: white; margin: 5em;">
+            <table class="table" id="notifications_table" style="margin-right: 6em;"></table>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="container-fluid">
+        <br>
+        <br>
+        <br>
+        <br>
+        <center>
+            <p style="color: black;">
+                <font size="5">Contact Us</font>
+            </p>
+            <br>
+            <p style="color: dimgrey">
+                <font size="3">International Institute of Information Technology, Hyderabad</font>
+            </p>
+            <p style="color: dimgrey;">
+                <font size="3">Gachibowli, Hyderabad - 500032</font>
+            </p>
+        </center>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            var event_creator = localStorage.getItem("username_local");
+            var creator = {creator: event_creator}
+            console.log("........................." + creator.creator + "...............................");
+            $.ajax({
+                type: 'POST',
+                data: creator,
+                url: '/getEventnameForNotification',
+                success: function(data) {
+
+
+                    console.log("eventslist ka data " + data);
+                    var eventslist = data;
+
+
+                    // for every event query inside requestedEvents
+
+                    for (var i = eventslist.length - 1; i >= 0; i--) {
+
+                        var eventname = {
+                            eventname: eventslist[i].eventname
+                        };
+                        console.log("\nfor ke andar " + eventname);
+
+                        $.ajax({
+
+                            type: 'POST',
+                            data: eventname,
+                            url: '/getNotifications',
+                            success: function(data) {
+
+                                var requestedlist = data;
+                                //$("#notifications_table").empty();
+                                for (var j = 0; j < requestedlist.length; j++) {
+
+                                    var eventname = requestedlist[j].eventname;
+                                    var username = requestedlist[j].username;
+
+                                    //alert(eventname);
+
+                                    var tdata = "<tr><td>" + eventname + "</td><td>" + username + "</td>" + "<td><button class=\"btn btn-default\" id=\"btnTable" + j + "\" type=\"button\">Approve</button></td>" + "</tr>";
+
+                                    $("#notifications_table").prepend(tdata);
+                                    console.log(eventname);
+                                    //console.log(tdata);
+
+                                }
+
+//......................................................................
+                                
+                                
+                                $('#notifications_table').find('tr').click(function() {
+
+                                    var x = $(this).index();
+
+                                    //                            var count = 1;
+                                    //                            $("#btnTable" + i).click(function() {
+                                    //                                var property = document.getElementById("#btnTable"+i);
+                                    //                                if (count == 0) {
+                                    //                                    property.style.backgroundColor = "#13f513";
+                                    //                                    count = 1;
+                                    //                                }
+                                    //
+                                    //                            });
+
+                                    var eventname_approve = requestedlist[x].eventname;
+                                    var data = {eventname: eventname_approve};
+
+                                    console.log(data);
+                                    alert(data.eventname);
+
+
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: '/approve_btn_clicked',
+                                        data: data,
+                                        success: function(data) {
+                                            
+                                            console.log("inside approve event call back");
+                                            console.log(data);
+
+                                            //alert(name);
+
+                                            if (data.length >= 1) {
+
+                                                window.location.pathname = "/notify";
+                                            } else {
+                                                alert("Invalid Username/password");
+                                                //$("#badLoginModal").modal('show');
+                                            }
+                                        }
+                                    });
+                                    
+                                    $(this).closest('tr').remove();
+
+                                });
+                                
+                                
+                                //...................................................
+
+                                }
+
+
+                            });
+
+                        }
+
+                    }
+
+                });
+        
+
+
+
+        });
+
+    </script>
+
+</body>
+
+</html>
