@@ -12,6 +12,7 @@ var urlencodedParser = bodyParser.urlencoded({
 
 
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost/mydb', {
     useMongoClient: true
 });
@@ -137,8 +138,8 @@ module.exports = function (app) {
 
     app.post('/create_event', urlencodedParser, function (req, res) {
 
-        //console.log("req.body.eventname");
-
+        // console.log("req.body.eventname");
+        // console.log(req)
         const newevent = new CreateEvent({
 
             username: req.body.username,
@@ -156,7 +157,7 @@ module.exports = function (app) {
         });
 
         newevent.save().then(function (result) {
-            console.log("created event" + eventname);
+            console.log("created event" + req.body.eventname);
 
             res.json(result);
 
@@ -199,7 +200,10 @@ module.exports = function (app) {
     app.get('/home', function (req, res) {
 
         CreateEvent.find({}, function (err, result) {
-            console.log(result);
+            console.log(res);
+            //extract events
+            
+            //fill css
             res.render('homepage', {
                 "eventslist": result
             });
