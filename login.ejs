@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login|NotifyMe</title>
+    <link rel="icon" type="image/gif/png" href="/stuff/datelogo.png">
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+    <style>
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+
+        .login-body {
+            position: relative;
+            background: #000 url("jumbo1.jpg") center center;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            overflow: hidden;
+            background-blend-mode: lighten;
+        }
+
+        .above {
+            margin-bottom: 10px;
+        }
+
+
+        .affix {
+            top: 0;
+            width: 100%;
+            z-index: 9999 !important;
+        }
+
+        .affix+.container-fluid {
+            padding-top: 0px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container above">
+    </div>
+    <!--nav bar-->
+    <nav class="navbar navbar-light" data-spy="affix" data-offset-top="10">
+        <div class="container-fluid" style="background-color: white;">
+            <div class="navbar-header">
+
+                <!--brand name click-->
+                <!--                <a class="navbar-brand" href="/public/index.html">-->
+
+                <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
+                <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="login-body" style="margin-top: -1em;">
+        <center>
+            <!-- Hero section -->
+            <div class="panel panel-default" style="display: inline-block; width: 40%; margin-top: 4em; margin-bottom: 4em;">
+                <div class="panel-heading">
+                    <font size="5">Log In</font>
+                </div>
+                <form>
+                    <div id="signin" style="margin-bottom:-65px;">
+                        <div style="width:450px; margin-top: 2.5em;">
+                            <div class="input-group" style="margin: 1.5em;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input class="form-control" id="name" type="text" name="name" value="" placeholder="Username" data-toggle="tooltip" data-placement="right" />
+                            </div>
+                            <div class="input-group" style="margin: 1.5em;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input class="form-control" id="password" type="password" name="password" placeholder="Password" data-content="" data-toggle="tooltip" data-placement="right" data-analytics="AuthPageInput" data-attr1="Password" data-attr2="Signup" data-attr3="master" />
+                            </div>
+                            <div style="margin: 1.5em;">
+                                <p class="text-center">
+                                    <!--button click connect to db-->
+                                    <button type="button" class="btn btn-success" id="login-btn" name="commit" value="request" data-analytics="SignupPassword" style="background-color: darkseagreen;"><font size="3" color="white">Log In</font></button>
+                                </p>
+                                <hr>
+                            </div>
+
+                            <div style="margin-top: 2em;">
+                                <p>
+                                    <font size="3">Or connect with :</font>
+                                </p>
+                                <a class="btn btn-primary social-login-btn social-facebook" style="display: inline-block; margin-bottom: 2em; height: 2.8em; width: 2.8em;" href="/auth/facebook"><i class="fa fa-facebook"></i></a>
+                                <a class="btn btn-danger social-login-btn social-google" style="display: inline-block; margin-left: 1em; margin-bottom: 2em; height: 2.8em; width: 2.8em;" href="/auth/google"><i class="fa fa-google-plus"></i></a>
+                                <a class="btn btn-primary social-login-btn social-linkedin" style="display: inline-block; margin-bottom: 2em; height: 2.8em; width: 2.8em; margin-left: 1em;" href="/auth/linkedin"><i class="fa fa-linkedin"></i></a>
+                                <p>
+                                    <!--new user href to register page-->
+                                    <font size="3" style="color: cadetblue;">New user? Register now!</font>
+                                </p>
+                            </div>
+
+                            <p style="color: black">
+                                <!--href to 404 page-->
+                                <font size="2" color="black"><i>
+                            By signing up you agree to our <a target="_blank" href="/public/404.html" style="color: black">Terms of Service</a> and <a target="_blank" href="/public/404.html" style="color: black;">Privacy Policy</font></a></i>
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </form>
+            </div>
+        </center>
+    </div>
+
+    <div class="container-fluid">
+        <br>
+        <br>
+        <br>
+        <br>
+        <center>
+            <p style="color: black;">
+                <font size="5">Contact Us</font>
+            </p>
+            <br>
+            <p style="color: dimgrey">
+                <font size="3">International Institute of Information Technology, Hyderabad</font>
+            </p>
+            <p style="color: dimgrey;">
+                <font size="3">Gachibowli, Hyderabad - 500032</font>
+            </p>
+        </center>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="badLoginModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Error</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Invalid username/password.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            console.log("login document ready");
+
+            $("#login-btn").click(function() {
+                var name = document.getElementById("name").value;
+                var password = document.getElementById("password").value;
+                var data = {
+                    username: name,
+                    password: password
+
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/login_check',
+                    data: data,
+                    success: function(data) {
+                        //do something with the data via front-end framework
+                        //location.reload();
+                        //renderHtml(data);
+                        console.log("inside sign in call back");
+                        console.log(data);
+
+                        if (data.length == 1) {
+                            window.location.pathname = "/home"
+                        } else {
+                            alert("Invalid Username/password");
+                            //$("#badLoginModal").modal('show');
+                        }
+                    }
+                });
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

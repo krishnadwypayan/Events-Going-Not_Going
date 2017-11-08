@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar|NotifyMe</title>
+    <link rel="icon" type="image/gif/png" href="datelogo.png">
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+    <style>
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+
+        .login-body {
+            position: relative;
+            background: #000 url("jumbo1.jpg") center center;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            overflow: hidden;
+            background-blend-mode: lighten;
+        }
+
+        .above {
+            margin-bottom: 10px;
+        }
+
+
+        .affix {
+            top: 0;
+            width: 100%;
+            z-index: 9999 !important;
+        }
+
+        .affix+.container-fluid {
+            padding-top: 0px;
+        }
+
+    </style>
+    <link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.1.0/fullcalendar.min.css' />
+
+</head>
+
+<body>
+
+    <div class="container above">
+    </div>
+    <!--nav bar-->
+    <nav class="navbar navbar-light" data-spy="affix" data-offset-top="10">
+        <div class="container-fluid" style="background-color: white;">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/public/index.html">
+                   <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
+                    <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div style="margin: 5em;">
+        <div id='calendar' class="fc-view-container"></div>
+    </div>
+    <script src='https://fullcalendar.io/js/fullcalendar-3.1.0/lib/moment.min.js'></script>
+    <script src='https://fullcalendar.io/js/fullcalendar-3.1.0/lib/jquery.min.js'></script>
+    <script src='https://fullcalendar.io/js/fullcalendar-3.1.0/lib/jquery-ui.min.js'></script>
+    <script src='https://fullcalendar.io/js/fullcalendar-3.1.0/fullcalendar.min.js'></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                height: 600,
+                contentHeight: 500,
+                aspectRatio: 0.1,
+                weekNumbers: true,
+                themeSystem: 'bootstrap3',
+                handleWindowResize: true,
+                titleFormat: 'MMM YYYY',
+                prev: 'glyphicon-chevron-left',
+                next: 'glyphicon-chevron-right',
+                prevYear: 'glyphicon-backward',
+                nextYear: 'glyphicon-forward',
+                header: {
+                    left: 'prevYear,prev,next,nextYear, ,today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,listMonth'
+                },
+                events: function(start, end, timezone, callback) {
+                    $.ajax({
+                        url: 'eventsJSON.json',
+                        type: "GET",
+                        datatype: 'json',
+                        success: function(doc) {
+                            var events = [];
+                            if (doc != undefined && doc.length > 0) {
+                                doc.forEach(function(entry) {
+                                    events.push({
+                                        title: entry.title,
+                                        start: entry.start,
+                                        end: entry.end
+                                    });
+                                });
+                            }
+                            callback(events);
+                        },
+                        error: function(err) {
+                            alert('Error in fetching data');
+                        }
+                    });
+                },
+                defaultView: 'month',
+
+                eventClick: function(calEvent, jsEvent, view) {
+                    alert(calEvent.title);
+                }
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
