@@ -291,6 +291,12 @@ module.exports = function (app) {
 
         var eventname = req.body.eventname;
         console.log(req.body.eventname + " ko approve kiya ");
+        
+        requestEvent.findOneAndRemove({
+            eventname: req.body.eventname, username: req.body.username, 
+        }).then(function(err,result){
+            console.log("removed" + req.body.username);
+        });
 
         CreateEvent.findOneAndUpdate({
             eventname: eventname
@@ -302,8 +308,16 @@ module.exports = function (app) {
             console.log(result.capacity);
             res.json(result);
         });
+        
+        
+        
 
     });
 
 
+    app.get('/calendar', function(req,res) {
+        res.render('cal');
+    });
+    
+    
 };
