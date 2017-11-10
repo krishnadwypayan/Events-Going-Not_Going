@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NotifyMe</title>
     <link rel="icon" type="image/gif/png" href="datelogo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="footer, address, phone, icons" />
+
+
+
     <!-- Bootstrap CSS -->
 
     <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
@@ -17,6 +23,10 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
 
 
@@ -67,6 +77,178 @@
         .input-group {
             overflow-y: inherit;
             z-index: 9999 !important;
+        }
+
+
+
+        .footer-distributed {
+            background-color: #292c2f;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+            box-sizing: border-box;
+            width: 100%;
+            text-align: left;
+            font: bold 16px sans-serif;
+
+            padding: 55px 50px;
+            margin-top: 80px;
+        }
+
+        .footer-distributed .footer-left,
+        .footer-distributed .footer-center,
+        .footer-distributed .footer-right {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        /* Footer left */
+
+        .footer-distributed .footer-left {
+            width: 40%;
+        }
+
+        /* The company logo */
+
+        .footer-distributed h3 {
+            color: #ffffff;
+            font: normal 36px 'Cookie', cursive;
+            margin: 0;
+        }
+
+        .footer-distributed h3 span {
+            color: #5383d3;
+        }
+
+        /* Footer links */
+
+        .footer-distributed .footer-links {
+            color: #ffffff;
+            margin: 20px 0 12px;
+            padding: 0;
+        }
+
+        .footer-distributed .footer-links a {
+            display: inline-block;
+            line-height: 1.8;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .footer-distributed .footer-company-name {
+            color: #8f9296;
+            font-size: 14px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        /* Footer Center */
+
+        .footer-distributed .footer-center {
+            width: 35%;
+        }
+
+        .footer-distributed .footer-center i {
+            background-color: #33383b;
+            color: #ffffff;
+            font-size: 25px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 42px;
+            margin: 10px 15px;
+            vertical-align: middle;
+        }
+
+        .footer-distributed .footer-center i.fa-envelope {
+            font-size: 17px;
+            line-height: 38px;
+        }
+
+        .footer-distributed .footer-center p {
+            display: inline-block;
+            color: #ffffff;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        .footer-distributed .footer-center p span {
+            display: block;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .footer-distributed .footer-center p a {
+            color: #5383d3;
+            text-decoration: none;
+            ;
+        }
+
+
+        /* Footer Right */
+
+        .footer-distributed .footer-right {
+            width: 20%;
+        }
+
+        .footer-distributed .footer-company-about {
+            line-height: 20px;
+            color: #92999f;
+            font-size: 13px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .footer-distributed .footer-company-about span {
+            display: block;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .footer-distributed .footer-icons {
+            margin-top: 25px;
+        }
+
+        .footer-distributed .footer-icons a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            background-color: #33383b;
+            border-radius: 2px;
+
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+            line-height: 35px;
+
+            margin-right: 3px;
+            margin-bottom: 5px;
+        }
+
+        /* If you don't want the footer to be responsive, remove these media queries */
+
+        @media (max-width: 880px) {
+
+            .footer-distributed {
+                font: bold 14px sans-serif;
+            }
+
+            .footer-distributed .footer-left,
+            .footer-distributed .footer-center,
+            .footer-distributed .footer-right {
+                display: block;
+                width: 100%;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+
+            .footer-distributed .footer-center i {
+                margin-left: 0;
+            }
+
         }
 
     </style>
@@ -173,20 +355,24 @@
                 <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
             </div>
 
-            <ul class="nav navbar-nav mr-auto" style="margin-top: -1.8em; margin-left: 50em; display: inline-block;">
+            <ul class="nav navbar-nav mr-auto pull-right" style="display: inline-block; margin-bottom: 0.5em;">
                 <li>
-                    <button type="button" id="create_event_navbar_btn" class="nav-item active">Create Event</button>
+                    <button type="button" id="create_event_navbar_btn" class="btn btn-default" style="background-color: white; color: #09609f; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50;">Create Event</button>
                 </li>
                 <li>
-                    <button type="button" id="view_event_navbar_btn" class="nav-item active" style="margin-left: 2em;">View Events</button>
+                    <button type="button" id="view_event_navbar_btn" class="btn btn-default" style="background-color: white; color: #680692; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;" href="#events_table">View Events</button>
                 </li>
                 <li>
-                    <button type="button" style="margin-left: 1em;" id="profile_name">Guest</button>
+                    <button type="button" id="profile_name" class="btn btn-default" style="background-color: white; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Guest</button>
+                </li>
+                <li>
+                    <button type="button" id="logout_navbar_btn" class="btn btn-default" style="background-color: white; color: #ae1d1d; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Log Out</button>
                 </li>
 
                 <li>
-                    <button type="button" id="logout_navbar_btn" class="nav-item active" style="margin-left: 2em;">Log Out</button>
+                    <button type="button" id="contact_us" class="btn btn-default" style="background-color: white; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Contact Us</button>
                 </li>
+
             </ul>
 
         </div>
@@ -318,16 +504,70 @@
     </div>
 
 
-    <div style="margin-top: 10em;">
+
+    <section style="margin: 2em; margin-right: 6em; margin-top: 5em;" id="events_section">
+        <div style="margin: 2em; margin-left: 4em;">
+            <h2 id="events_heading"></h2>
+        </div>
+        <div style="margin: 2em; ">
+            <table class="table table-hover table-bordered" id="events_table" style="margin: 2em; margin-right: 6em;"></table>
+        </div>
+    </section>
+
+
+
+    <div style="margin-top: 15em;">
     </div>
 
 
-    <div style="margin: 2em; margin-right: 6em;">
-        <table class="table" id="events_table" style="margin: 2em; margin-right: 6em;"></table>
-    </div>
+    <footer class="footer-distributed" id="footer_section">
 
-    <div style="margin-top: 10em;">
-    </div>
+        <div class="footer-left">
+
+            <span><img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png"></span>
+            <h3>NotifyMe</h3>
+
+            <p class="footer-company-name" style="margin-top: 1em;">NotifyMe &copy; 2017</p>
+        </div>
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>IIIT Hyderabad, Gachibowli</span> Hyderabad, India</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+91 987654321</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p>support@notifyme.com</p>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>About the company</span> Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            </p>
+
+            <div class="footer-icons">
+
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
 
 
     <script type="text/javascript">
@@ -392,6 +632,7 @@
 
 
             $("#logout_navbar_btn").click(function() {
+                localStorage.setItem("username_local", "");
                 $.ajax({
                     type: 'GET',
                     url: '/register',
@@ -402,9 +643,9 @@
                 });
                 return false;
             });
-            
-            
-            
+
+
+
 
 
             $("#profile_name").click(function() {
@@ -421,96 +662,124 @@
             });
 
 
+            $("#contact_us").click(function() {
+                $('html,body').animate({
+                    scrollTop: $("#footer_section").offset().top
+                }, 'medium');
+
+            });
 
 
             $("#view_event_navbar_btn").click(function() {
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/viewEvent',
-                    success: function(data) {
-
-                        console.log(data);
-                        var events = data;
-
-                        $("#events_table").empty();
-                        for (var i = events.length - 1; i >= 0; i--) {
-                            var eventname = events[i].eventname;
-                            var eventdesc = events[i].eventdesc;
-                            var startdate = events[i].startdate;
-                            var starttime = events[i].starttime;
-                            var enddate = events[i].enddate;
-                            var endtime = events[i].endtime;
-
-                            //alert(eventname);
-
-                            var tdata = "<tr><td>" + eventname + "</td><td colspan=\"2\">" + eventdesc + "</td><td>" + startdate + "</td><p>&nbsp; &#64; </p> <td>" + starttime + "</td><p>&nbsp; &#64;</p><td>" + enddate + "</td><td>" + endtime + "</td>" + "<td><button class=\"btn btn-default\" id=\"btnTable" + i + "\" type=\"button\">Interested</button></td>" + "</tr>";
-
-                            $("#events_table").prepend(tdata);
-                            console.log(eventname);
-                            //console.log(tdata);
-
-                        }
-
-                        $('#events_table').find('tr').click(function() {
-
-                            var i = $(this).index();
-
-                            //                            var count = 1;
-                            //                            $("#btnTable" + i).click(function() {
-                            //                                var property = document.getElementById("#btnTable"+i);
-                            //                                if (count == 0) {
-                            //                                    property.style.backgroundColor = "#13f513";
-                            //                                    count = 1;
-                            //                                }
-                            //
-                            //                            });
-
-                            var username_request = username_print;
-                            var eventname_request = events[i].eventname;
-                            var data = {
-                                username_request: username_request,
-                                eventname_request: eventname_request
-                            };
-
-                            console.log(data);
-                            alert(data.username_request + " " + data.eventname_request);
-
-
-                            $.ajax({
-                                type: 'POST',
-                                url: '/request_btn_clicked',
-                                data: data,
-                                success: function(data) {
-                                    //do something with the data via front-end framework
-                                    //location.reload();
-                                    //renderHtml(data);
-                                    console.log("inside request event call back");
-                                    console.log(data);
-
-                                    //alert(name);
-
-                                    if (data.length >= 1) {
-
-                                        window.location.pathname = "/home"
-                                    } else {
-                                        alert("Invalid Username/password");
-                                        //$("#badLoginModal").modal('show');
-                                    }
-                                }
-                            });
-
-
-                        });
-
-                    }
-                });
+                $('html,body').animate({
+                    scrollTop: $("#events_section").offset().top
+                }, 'medium');
             });
 
 
 
+            //            $("#view_event_navbar_btn").click(function() {
+            var notusername_send = localStorage.getItem("username_local");
+
+            var notusername = {
+                notusername_send: notusername_send,
+            };
+
+            $.ajax({
+                type: 'POST',
+                data: notusername,
+                url: '/viewEvent',
+                success: function(data) {
+
+                    console.log(data);
+                    var events = data;
+
+                    $("#events_table").empty();
+                    var header = "<thead class=\"thead-inverse\"><th colspan=\"2\"><p>EventName</p></th><th><p>Event Description</p></th><th><p>Starts on</p></th><th><p>Starts at</p></th><th><p>Ends on</p></th><th><p>Ends at</p></th><th><p>Interested</p></th></thead>";
+                    $("#events_table").append(header);
 
 
+                    for (var i = events.length - 1; i >= 0; i--) {
+                        var eventname = events[i].eventname;
+                        var eventdesc = events[i].eventdesc;
+                        var startdate = events[i].startdate;
+                        var starttime = events[i].starttime;
+                        var enddate = events[i].enddate;
+                        var endtime = events[i].endtime;
+
+                        //alert(eventname);
+
+                        var tdata = "<tr><td><p>" + eventname + "</p></td><td colspan=\"2\"><p>" + eventdesc + "</p></td><td><p>" + startdate + "</p></td><p>&nbsp; &#64; </p> <td><p>" + starttime + "</p></td><p>&nbsp; &#64;</p><td><p>" + enddate + "</p></td><td><p>" + endtime + "</p></td>" + "<td><button class=\"btn btn-default\" id=\"btnTable" + i + "\" type=\"button\">Interested</button></td>" + "</tr>";
+
+                        $("#events_table").prepend(tdata);
+                        console.log(eventname);
+                        //console.log(tdata);
+
+                    }
+
+                    $('#events_table').find('tr').click(function() {
+
+                        var i = $(this).index();
+
+
+                        var username_request = username_print;
+                        var eventname_request = events[i].eventname;
+                        var data = {
+                            username_request: username_request,
+                            eventname_request: eventname_request
+                        };
+
+                        console.log(data);
+                        //                        alert(data.username_request + " " + data.eventname_request);
+
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '/request_btn_clicked',
+                            data: data,
+                            success: function(data_received) {
+                                //do something with the data via front-end framework
+                                //location.reload();
+                                //renderHtml(data);
+
+                                console.log(data_received);
+                                console.log("Data capaity mila idhar " + data_received[0].capacity);
+
+                                if (data_received[0].capacity == 0) {
+                                    alert(data_received[0].eventname + " is full");
+                                }
+                                if (data_received[0].capacity > 0) {
+
+                                    var username_request = username_print;
+                                    var eventname_request = events[i].eventname;
+                                    var data_new = {
+                                        username_request: username_request,
+                                        eventname_request: eventname_request
+                                    };
+                                    console.log(data_new);
+
+
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: '/request_available',
+                                        data: data_new,
+                                        success: function(dataX) {
+                                            console.log("inside request event call back");
+                                            console.log(dataX);
+
+
+                                            //alert(data_new[0].username_request + " " + data_new[0].eventname_request);
+                                            window.location.pathname = "/home"
+
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    });
+
+                }
+            });
 
             //....document ready ends here....
         });

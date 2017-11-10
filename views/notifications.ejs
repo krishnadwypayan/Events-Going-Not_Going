@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <style>
         .starter-template {
             padding: 40px 15px;
@@ -60,6 +62,24 @@
                 <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
                 <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
             </div>
+
+            <div>
+                <ul class="nav navbar-nav mr-auto" style="margin-top: 0.5em; margin-left: 50em; display: inline-block;">
+                    <li>
+                        <button type="button" id="home_navbar_btn" class="btn btn-default" style="background-color: white; color: #09609f; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50;">Home</button>
+                    </li>
+                    <li>
+                        <button type="button" id="profile_name" class="btn btn-default" style="background-color: white; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Guest</button>
+                    </li>
+
+                    <li>
+                        <button type="button" id="logout_navbar_btn" class="btn btn-default" style="background-color: white; color: #b51616; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Log Out</button>
+                    </li>
+                </ul>
+
+
+
+            </div>
         </div>
     </nav>
 
@@ -67,9 +87,13 @@
 
 
     <div class="jumbotron jumbotron-fluid" style="margin-top: -1em;">
-
+        <p style="margin-left: 5em; color: ghostwhite;">
+            <font size=5>Event Requests</font>
+        </p>
         <div style="background: white; margin: 5em;">
-            <table class="table" id="notifications_table" style="margin-right: 6em;"></table>
+            <table class="table" id="notifications_table" style="margin-right: 6em;">
+
+            </table>
         </div>
 
     </div>
@@ -104,8 +128,11 @@
     <script>
         $(document).ready(function() {
 
+
             var event_creator = localStorage.getItem("username_local");
-            var creator = {creator: event_creator}
+            var creator = {
+                creator: event_creator
+            }
             console.log("........................." + creator.creator + "...............................");
             $.ajax({
                 type: 'POST',
@@ -119,6 +146,7 @@
 
 
                     // for every event query inside requestedEvents
+
 
                     for (var i = eventslist.length - 1; i >= 0; i--) {
 
@@ -135,7 +163,9 @@
                             success: function(data) {
 
                                 var requestedlist = data;
+                                var flag = 0;
                                 //$("#notifications_table").empty();
+                                
                                 for (var j = 0; j < requestedlist.length; j++) {
 
                                     var eventname = requestedlist[j].eventname;
@@ -143,37 +173,32 @@
 
                                     //alert(eventname);
 
-                                    var tdata = "<tr><td><p style=\"margin-left: 3em;\">" + eventname + "</p></td><td><p style=\"margin-left:5em;\">" + username + "</p></td>" + "<td><button style=\"margin-left: 22em;\" class=\"btn btn-default\" id=\"btnTableApprove" + j + "\" type=\"button\">Approve</button><button class=\"btn btn-default\" id=\"btnTableDeny" + j + "\" type=\"button\" style=\"margin-left: 2em;\">Deny</button></td>" + "</tr>";
+                                    var tdata = "<tr><td><p style=\"margin-left: 3em;\">" + eventname + "</p></td><td><p style=\"margin-left:5em;\">" + username + "</p></td>" + "<td><button style=\"margin-left: 22em;\" class=\"btn btn-default\" id=\"btnTableApprove" + j + "\" type=\"button\">Approve</button></td>" + "</tr>";
 
-                                    $("#notifications_table").prepend(tdata);
+                                    $("#notifications_table").append(tdata);
                                     console.log(eventname);
                                     //console.log(tdata);
 
                                 }
 
-//......................................................................
-                                
-                                
+
+
+                                //......................................................................
+
                                 $('#notifications_table').find('tr').click(function() {
 
                                     var x = $(this).index();
-
-                                    //                            var count = 1;
-                                    //                            $("#btnTable" + i).click(function() {
-                                    //                                var property = document.getElementById("#btnTable"+i);
-                                    //                                if (count == 0) {
-                                    //                                    property.style.backgroundColor = "#13f513";
-                                    //                                    count = 1;
-                                    //                                }
-                                    //
-                                    //                            });
-
+                                    
+                                    //console.log("some error" + requestedlist[x]);
                                     var eventname_approve = requestedlist[x].eventname;
                                     var username_approve = requestedlist[x].username;
-                                    var data = {eventname: eventname_approve, username: username_approve};
+                                    var data = {
+                                        eventname: eventname_approve,
+                                        username: username_approve
+                                    };
 
                                     console.log(data);
-                                    alert(data.eventname);
+                                    alert("Approved " + data.username + " for " + data.eventname);
 
 
                                     $.ajax({
@@ -181,7 +206,7 @@
                                         url: '/approve_btn_clicked',
                                         data: data,
                                         success: function(data) {
-                                            
+
                                             console.log("inside approve event call back");
                                             console.log(data);
 
@@ -196,25 +221,66 @@
                                             }
                                         }
                                     });
-                                    
+
                                     $(this).closest('tr').remove();
 
                                 });
-                                
-                                
                                 //...................................................
 
-                                }
+                            }
+                        });
+                    }
+                }
+            });
 
 
-                            });
 
-                        }
+            $("#logout_navbar_btn").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/register',
+                    success: function(data) { //do something with the data via front-end framework //location.reload(); //renderHtml(data); 
 
+                        window.location.pathname = "/register"
+                    }
+                });
+                return false;
+            });
+
+
+            var username_print = localStorage.getItem("username_local");
+            document.getElementById("profile_name").innerHTML = username_print;
+
+
+            $("#profile_name").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/notify',
+                    success: function(data) {
+                        window.location.pathname = "/notify"
+                        console.log("welcome");
                     }
 
                 });
-        
+                return false;
+            });
+
+
+
+            $("#home_navbar_btn").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/home',
+                    success: function(data) {
+                        window.location.pathname = "/home"
+                        console.log("home from event created");
+                    }
+
+                });
+                return false;
+            });
+
+
 
 
 

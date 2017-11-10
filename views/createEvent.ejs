@@ -45,7 +45,9 @@
         }
 
         .above {
-            margin-bottom: 10px;
+            margin-top: -0.8em;
+            margin-bottom: 2em;
+            background: white;
         }
 
 
@@ -64,9 +66,177 @@
             z-index: 9999;
         }
 
-        .input-group {
-            overflow-y: inherit;
-            z-index: 9999 !important;
+
+
+
+        .footer-distributed {
+            background-color: #292c2f;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+            box-sizing: border-box;
+            width: 100%;
+            text-align: left;
+            font: bold 16px sans-serif;
+
+            padding: 55px 50px;
+            margin-top: 80px;
+        }
+
+        .footer-distributed .footer-left,
+        .footer-distributed .footer-center,
+        .footer-distributed .footer-right {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        /* Footer left */
+
+        .footer-distributed .footer-left {
+            width: 40%;
+        }
+
+        /* The company logo */
+
+        .footer-distributed h3 {
+            color: #ffffff;
+            font: normal 36px 'Cookie', cursive;
+            margin: 0;
+        }
+
+        .footer-distributed h3 span {
+            color: #5383d3;
+        }
+
+        /* Footer links */
+
+        .footer-distributed .footer-links {
+            color: #ffffff;
+            margin: 20px 0 12px;
+            padding: 0;
+        }
+
+        .footer-distributed .footer-links a {
+            display: inline-block;
+            line-height: 1.8;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .footer-distributed .footer-company-name {
+            color: #8f9296;
+            font-size: 14px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        /* Footer Center */
+
+        .footer-distributed .footer-center {
+            width: 35%;
+        }
+
+        .footer-distributed .footer-center i {
+            background-color: #33383b;
+            color: #ffffff;
+            font-size: 25px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 42px;
+            margin: 10px 15px;
+            vertical-align: middle;
+        }
+
+        .footer-distributed .footer-center i.fa-envelope {
+            font-size: 17px;
+            line-height: 38px;
+        }
+
+        .footer-distributed .footer-center p {
+            display: inline-block;
+            color: #ffffff;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        .footer-distributed .footer-center p span {
+            display: block;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .footer-distributed .footer-center p a {
+            color: #5383d3;
+            text-decoration: none;
+            ;
+        }
+
+
+        /* Footer Right */
+
+        .footer-distributed .footer-right {
+            width: 20%;
+        }
+
+        .footer-distributed .footer-company-about {
+            line-height: 20px;
+            color: #92999f;
+            font-size: 13px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .footer-distributed .footer-company-about span {
+            display: block;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .footer-distributed .footer-icons {
+            margin-top: 25px;
+        }
+
+        .footer-distributed .footer-icons a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            background-color: #33383b;
+            border-radius: 2px;
+
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+            line-height: 35px;
+
+            margin-right: 3px;
+            margin-bottom: 5px;
+        }
+
+        /* If you don't want the footer to be responsive, remove these media queries */
+
+        @media (max-width: 880px) {
+
+            .footer-distributed {
+                font: bold 14px sans-serif;
+            }
+
+            .footer-distributed .footer-left,
+            .footer-distributed .footer-center,
+            .footer-distributed .footer-right {
+                display: block;
+                width: 100%;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+
+            .footer-distributed .footer-center i {
+                margin-left: 0;
+            }
+
         }
 
     </style>
@@ -76,17 +246,38 @@
 <body>
 
 
-    <div class="container above">
+    <div class="container above" style="background: white;">
     </div>
     <!--nav bar-->
-    <nav class="navbar navbar-light" data-spy="affix" data-offset-top="10">
+    <nav class="navbar navbar-light" data-spy="affix" data-offset-top="20" style="margin-bottom: 1em; margin-top: -0.1em;">
         <div class="container-fluid" style="background-color: white;">
             <div class="navbar-header">
                 <!--href to register page-->
                 <!--                <a class="navbar-brand" href="/public/index.html">-->
-                <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
+                <img style="display: inline-block; height: 3em; width: 3em; margin-top: -0.8em;" src="datelogo.png">
                 <!--                    <i style="display: inline-block; margin-right: 1.5em;" class="glyphicon glyphicon-calendar"></i>-->
                 <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
+            </div>
+            <div>
+                <ul class="nav navbar-nav mr-auto pull-right" style="display: inline-block;">
+                    <li>
+                        <button type="button" id="home_navbar_btn" class="btn btn-default" style="background-color: white; color: #09609f; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50;">Home</button>
+                    </li>
+                    <li>
+                        <button type="button" id="profile_name" class="btn btn-default" style="background-color: white; color: #05a30c; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Guest</button>
+                    </li>
+
+                    <li>
+                        <button type="button" id="logout_navbar_btn" class="btn btn-default" style="background-color: white; color: #f70707; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Log Out</button>
+                    </li>
+
+                    <li>
+                        <button type="button" id="contact_us" class="btn btn-default" style="background-color: white; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Contact Us</button>
+                    </li>
+
+                </ul>
+
+
             </div>
         </div>
     </nav>
@@ -120,88 +311,159 @@
 
 
 
-    <div class="jumbotron jumbotron-fluid" style="margin-top: -1em;">
-        <center>
-            <!-- Hero section -->
-            <div>
-                <div class="container--flex">
-                    <div>
-                        <p>
-                            <font size=8 color="ghostwhite">Create Event</font>
-                        </p>
 
-                        <form>
+    <center>
+        <!-- Hero section -->
+        <div style="background: url('createevent.png'); margin-top: -0.5em;">
+            <div class="container--flex">
 
-                            <div style="width:450px; margin-top: 2.5em;">
+                <div class="card">
+                    <div style="display:none;"></div>
+                    <div style="width:400px; height: 72em;" >
+                        <div class="card-block">
+                            <p class="card-title" id="event_name_card1"><font size="6" color="ghostwhite">Create Event</font></p>
+                        </div>
 
-<!--
+                        <!--
                                 <div class="input-group" style="margin: 1.5em;">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                     <input class="form-control" id="event_username" type="text" value="" placeholder="Username" data-placement="right" style="min-width: 100%;" required/>
                                 </div>
 -->
 
-                                <div class="input-group" style="margin: 1.5em;">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input class="form-control" id="event_name" type="text" value="" placeholder="Event Name" data-placement="right" style="min-width: 100%;" required/>
-                                </div>
+                        <li class="list-group-item">
 
-                                <div class="input-group" style="margin: 1.5em;">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <textarea id="event_desc" class="form-control" style="min-width: 100%;" placeholder="Event Description" required></textarea>
-                                </div>
+                            <div class="input-group" style="margin: 1.5em;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-hand-right"></i></span>
+                                <input class="form-control" id="event_name" type="text" value="" placeholder="Event Name" data-placement="right" style="min-width: 100%;" required/>
+                            </div>
+                        </li>
 
+                        <li class="list-group-item">
 
-                                <div id="event_start" class="input-group" style="margin: 1.5em;">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input id="start_date" type="text" name="name" value="" style="min-width: 100%; height: 2.5em;" placeholder="Starts..." data-toggle="tooltip" data-placement="center" required/>
+                            <div class="input-group" style="margin: 1.5em;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
+                                <textarea id="event_desc" class="form-control" style="min-width: 100%;" placeholder="Event Description" required></textarea>
+                            </div>
 
-                                    <input id="start_time" class="timepicker" style="min-width: 100%; margin-top: 0.3em;" />
+                        </li>
+                        <li class="list-group-item">
 
-                                </div>
+                            <div id="event_start" class="input-group" style="margin: 1.5em;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input id="start_date" type="text" name="name" value="" style="min-width: 100%; height: 2.5em;" placeholder="Starts..." data-toggle="tooltip" data-placement="center" required/>
 
-                                <div id="event_end" class="input-group" style="margin: 1.5em;">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input id="end_date" type="text" placeholder="Ends..." style="min-width: 100%; height: 2.5em;" data-placement="right" required/>
-
-                                    <input id="end_time" class="timepicker" style="min-width: 100%; margin-top: 0.3em;" />
-                                </div>
-
-                                <div class="input-group" style="margin: 1.5em;">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input class="form-control" id="event_capacity" type="number" value="" placeholder="Capacity" data-placement="right" style="min-width: 100%; height: 2.5em;" min="1" max="500" required/>
-                                </div>
-
-                                <div class="input-group" style="margin: 1.5em;">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input class="form-control" id="event_location" type="text" value="" placeholder="Location" data-placement="right" style="min-width: 100%;" required/>
-                                </div>
-
-                                <div class="input-group" style="margin: 1.5em;">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input class="form-control" id="event_contact" type="text" value="" placeholder="Contact Number" data-placement="right" style="min-width: 100%;" required/>
-                                </div>
-
-                                <div style="margin: 1.5em;">
-                                    <p class="text-center">
-
-                                        <button type="button" class="btn btn-success" id="create_event_btn" name="commit" value="request" style="background-color: ghostwhite;"><font size="3" color="black">Create event</font></button>
-                                    </p>
-                                    <hr>
-                                </div>
-
+                                <input id="start_time" class="timepicker" style="min-width: 100%; margin-top: 0.3em;" />
 
                             </div>
-                        </form>
+
+                        </li>
+                        <li class="list-group-item">
+
+                            <div id="event_end" class="input-group" style="margin: 1.5em;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input id="end_date" type="text" placeholder="Ends..." style="min-width: 100%; height: 2.5em;" data-placement="right" required/>
+
+                                <input id="end_time" class="timepicker" style="min-width: 100%; margin-top: 0.3em;" />
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+
+                            <div class="input-group" style="margin: 1.5em;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input class="form-control" id="event_capacity" type="number" value="" placeholder="Capacity" data-placement="right" style="min-width: 100%; height: 2.5em;" min="1" max="500" required/>
+                            </div>
+
+                        </li>
+                        <li class="list-group-item">
+
+                            <div class="input-group" style="margin: 1.5em;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                <input class="form-control" id="event_location" type="text" value="" placeholder="Location" data-placement="right" style="min-width: 100%;" required/>
+                            </div>
+
+                        </li>
+
+                        <li class="list-group-item">
+
+                            <div class="input-group" style="margin: 1.5em;">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input class="form-control" id="event_contact" type="text" value="" placeholder="Contact Number" data-placement="right" style="min-width: 100%;" required/>
+                            </div>
+
+                        </li>
+
+                        <li class="list-group-item">
+
+                            <div style="margin: 1.5em;">
+                                <p class="text-center">
+
+                                    <button type="button" class="btn btn-success" id="create_event_btn" name="commit" value="request"><font size="3">Create event</font></button>
+                                </p>
+                                <hr>
+                            </div>
+                        </li>
+
 
                     </div>
                 </div>
+
             </div>
-        </center>
-    </div>
+        </div>
+
+    </center>
 
 
-    <div style="margin-top: 10em;"></div>
+
+    <footer class="footer-distributed" id="footer_section">
+
+        <div class="footer-left">
+
+            <span><img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png"></span>
+            <h3>NotifyMe</h3>
+
+            <p class="footer-company-name" style="margin-top: 1em;">NotifyMe &copy; 2017</p>
+        </div>
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>IIIT Hyderabad, Gachibowli</span> Hyderabad, India</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+91 987654321</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p>support@notifyme.com</p>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>About the company</span> Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            </p>
+
+            <div class="footer-icons">
+
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
 
 
     <script>
@@ -256,7 +518,7 @@
                     capacity: capacity,
 
                 };
-                
+
                 console.log(data.capacity + " " + data.contact + " " + data.location);
                 //alert(eventname + eventdesc + startdate + starttime + enddate + endtime);
 
@@ -275,7 +537,75 @@
                         //$("#signupModal").modal('show');
                     }
                 });
+
+                document.getElementById("event_name").innerHTML = "";
+                document.getElementById("event_desc").innerHTML = "";
+                document.getElementById("start_date").innerHTML = "";
+                document.getElementById("start_time").innerHTML = "";
+                document.getElementById("end_date").innerHTML = "";
+                document.getElementById("end_time").innerHTML = "";
+                document.getElementById("event_location").innerHTML = "";
+                document.getElementById("event_contact").innerHTML = "";
+                document.getElementById("event_capacity").innerHTML = "";
+
             });
+
+
+
+            $("#logout_navbar_btn").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/register',
+                    success: function(data) { //do something with the data via front-end framework //location.reload(); //renderHtml(data); 
+
+                        window.location.pathname = "/register"
+                    }
+                });
+                return false;
+            });
+
+
+            var username_print = localStorage.getItem("username_local");
+            document.getElementById("profile_name").innerHTML = username_print;
+
+
+            $("#profile_name").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/notify',
+                    success: function(data) {
+                        window.location.pathname = "/notify"
+                        console.log("welcome");
+                    }
+
+                });
+                return false;
+            });
+
+
+
+            $("#home_navbar_btn").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/home',
+                    success: function(data) {
+                        window.location.pathname = "/home"
+                        console.log("home from event created");
+                    }
+
+                });
+                return false;
+            });
+
+
+            $("#contact_us").click(function() {
+                $('html,body').animate({
+                    scrollTop: $("#footer_section").offset().top
+                }, 'medium');
+
+            });
+
+
 
 
         });
