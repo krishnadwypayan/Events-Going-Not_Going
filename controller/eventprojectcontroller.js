@@ -37,9 +37,15 @@ const CreateEventSchema = new Schema({
     username: String,
     eventname: String,
     eventdesc: String,
-    startdate: String,
+    startdate: {
+        type: Date,
+        default: Date.now
+    },
     starttime: String,
-    enddate: String,
+    enddate: {
+        type: Date,
+        default: Date.now
+    },
     endtime: String,
     location: String,
     contact: String,
@@ -114,12 +120,14 @@ module.exports = function (app) {
 
     app.post('/create_event', urlencodedParser, function (req, res) {
 
+        var startdate = new Date(req.body.startdate);
+        console.log(startdate);
         const newevent = new CreateEvent({
 
             username: req.body.username,
             eventname: req.body.eventname,
             eventdesc: req.body.eventdesc,
-            startdate: req.body.startdate,
+            startdate: startdate,
             starttime: req.body.starttime,
             enddate: req.body.enddate,
             endtime: req.body.endtime,
@@ -289,8 +297,14 @@ module.exports = function (app) {
             res.json(result);
         });
 
+    });
 
 
+    app.post('/deleteEvents', urlencodedParser, function (req, res) {
+        CreateEvent.remove({'startdate':{'$lt': new Date()} }).then(function (err, result) {
+            console.log("Cleared entries");
+            res.json(result);
+        });
 
     });
 
