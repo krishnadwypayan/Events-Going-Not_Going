@@ -9,13 +9,29 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+
+    <!--
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.js"></script>
+-->
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.min.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.min.js"></script>
+
+
+
+
     <style>
         .starter-template {
             padding: 40px 15px;
             text-align: center;
         }
 
-        .login-body {
+        .calendar-container {
             position: relative;
             background: #000 url("jumbo1.jpg") center center;
             width: 100%;
@@ -41,7 +57,7 @@
         }
 
     </style>
-    <link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.1.0/fullcalendar.min.css' />
+
 
 </head>
 
@@ -50,27 +66,59 @@
     <div class="container above">
     </div>
     <!--nav bar-->
+
     <nav class="navbar navbar-light" data-spy="affix" data-offset-top="10">
         <div class="container-fluid" style="background-color: white;">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/public/index.html">
-                   <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
-                    <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
-                </a>
+                <!--href to register page-->
+                <!--                <a class="navbar-brand" href="/public/index.html">-->
+                <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
+                <!--                    <i style="display: inline-block; margin-right: 1.5em;" class="glyphicon glyphicon-calendar"></i>-->
+                <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
+            </div>
+            <div>
+                <ul class="nav navbar-nav mr-auto" style="/*margin-top: -1.8em;*/ margin-left: 50em; display: inline-block; margin-bottom: 0.5em;">
+                    <li>
+                        <button type="button" id="home_navbar_btn" class="btn btn-default" style="background-color: white; color: #09609f; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50;">Home</button>
+                    </li>
+                    <li>
+                        <button type="button" id="create_event_navbar_btn" class="btn btn-default" style="background-color: white; color: #09609f; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Create Event</button>
+                    </li>
+                    <li>
+                        <button type="button" id="profile_name" class="btn btn-default" style="background-color: white; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Guest</button>
+                    </li>
+
+                    <li>
+                        <button type="button" id="logout_navbar_btn" class="btn btn-default" style="background-color: white; color: #ae1d1d; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Log Out</button>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <div style="margin: 5em;">
-        <div id='calendar' class="fc-view-container"></div>
+
+
+    <div style="margin: 5em; margin-top: -1em;">
+        <div class="container calendar-container" style="background:#defce1;">
+            <div id='calendar' class="fc-view-container" style="margin: 1em;"></div>
+        </div>
     </div>
-    <script src='https://fullcalendar.io/js/fullcalendar-3.1.0/lib/moment.min.js'></script>
-    <script src='https://fullcalendar.io/js/fullcalendar-3.1.0/lib/jquery.min.js'></script>
-    <script src='https://fullcalendar.io/js/fullcalendar-3.1.0/lib/jquery-ui.min.js'></script>
-    <script src='https://fullcalendar.io/js/fullcalendar-3.1.0/fullcalendar.min.js'></script>
 
-    <script type="text/javascript">
+    <!--
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
+    <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+-->
 
+    <!--
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
+    <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+    <link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.1.0/fullcalendar.min.css' />
+-->
+
+    <script>
         $(document).ready(function() {
             $('#calendar').fullCalendar({
                 height: 600,
@@ -91,17 +139,18 @@
                 },
                 events: function(start, end, timezone, callback) {
                     $.ajax({
-                        url: 'eventsJSON.json',
-                        type: "GET",
-                        datatype: 'json',
+                        url: '/viewEvent',
+                        type: "POST",
                         success: function(doc) {
+                            console.log(doc);
+                            //alert(doc);
                             var events = [];
                             if (doc != undefined && doc.length > 0) {
                                 doc.forEach(function(entry) {
                                     events.push({
-                                        title: entry.title,
-                                        start: entry.start,
-                                        end: entry.end
+                                        title: entry.eventname,
+                                        start: entry.startdate,
+                                        end: entry.enddate
                                     });
                                 });
                             }
@@ -118,6 +167,72 @@
                     alert(calEvent.title);
                 }
             });
+
+
+
+
+            $("#create_event_navbar_btn").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/createEvent',
+                    success: function(data) { //do something with the data via front-end framework //location.reload(); //renderHtml(data); 
+
+                        window.location.pathname = "/createEvent"
+                    }
+                });
+                return false;
+            });
+
+
+
+            $("#logout_navbar_btn").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/register',
+                    success: function(data) { //do something with the data via front-end framework //location.reload(); //renderHtml(data); 
+
+                        window.location.pathname = "/register"
+                    }
+                });
+                return false;
+            });
+
+
+            var username_print = localStorage.getItem("username_local");
+            document.getElementById("profile_name").innerHTML = username_print;
+
+
+            $("#profile_name").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/notify',
+                    success: function(data) {
+                        window.location.pathname = "/notify"
+                        console.log("welcome");
+                    }
+
+                });
+                return false;
+            });
+
+
+
+
+            $("#home_navbar_btn").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/home',
+                    success: function(data) {
+                        window.location.pathname = "/home"
+                        console.log("home from event created");
+                    }
+
+                });
+                return false;
+            });
+
+
+
         });
 
     </script>
