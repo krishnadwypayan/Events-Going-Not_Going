@@ -78,7 +78,7 @@
             font: bold 16px sans-serif;
 
             padding: 55px 50px;
-            margin-top: 80px;
+            margin-top: 0px;
         }
 
         .footer-distributed .footer-left,
@@ -266,6 +266,9 @@
                     <li>
                         <button type="button" id="profile_name" class="btn btn-default" style="background-color: white; color: #05a30c; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Guest</button>
                     </li>
+                    <li>
+                        <button type="button" id="calendar" class="btn btn-default" style="background-color: white; color: #088b82; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Calendar</button>
+                    </li>
 
                     <li>
                         <button type="button" id="logout_navbar_btn" class="btn btn-default" style="background-color: white; color: #f70707; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Log Out</button>
@@ -319,9 +322,11 @@
 
                 <div class="card">
                     <div style="display:none;"></div>
-                    <div style="width:400px; height: 72em;" >
+                    <div style="width:400px; height: 72em;">
                         <div class="card-block">
-                            <p class="card-title" id="event_name_card1"><font size="6" color="ghostwhite">Create Event</font></p>
+                            <p class="card-title" id="event_name_card1">
+                                <font size="6" color="ghostwhite">Create Event</font>
+                            </p>
                         </div>
 
                         <!--
@@ -351,9 +356,9 @@
 
                             <div id="event_start" class="input-group" style="margin: 1.5em;">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <input id="start_date" type="text" name="name" value="" style="min-width: 100%; height: 2.5em;" placeholder="Starts..." data-toggle="tooltip" data-placement="center" required/>
+                                <input id="start_date" type="date" name="name" value="" style="min-width: 100%; height: 2.5em;" placeholder="Starts..." data-toggle="tooltip" data-placement="center" required/>
 
-                                <input id="start_time" class="timepicker" style="min-width: 100%; margin-top: 0.3em;" />
+                                <input type="time" id="start_time" style="min-width: 100%; margin-top: 0.3em;" />
 
                             </div>
 
@@ -362,9 +367,9 @@
 
                             <div id="event_end" class="input-group" style="margin: 1.5em;">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                <input id="end_date" type="text" placeholder="Ends..." style="min-width: 100%; height: 2.5em;" data-placement="right" required/>
+                                <input id="end_date" type="date" placeholder="Ends..." style="min-width: 100%; height: 2.5em;" data-placement="right" required/>
 
-                                <input id="end_time" class="timepicker" style="min-width: 100%; margin-top: 0.3em;" />
+                                <input type="time" id="end_time" style="min-width: 100%; margin-top: 0.3em;" />
                             </div>
                         </li>
 
@@ -470,23 +475,32 @@
         $(document).ready(function() {
 
             console.log("login document ready");
+//
+//            $('#start_date').datepicker({
+//                format: 'dd M yyyy',
+//                endDate: '+0d',
+//                autoclose: true,
+//                showButtonPanel: true,
+//                todayBtn: 'linked'
+//            }).on('change', function() {
+//                jQuery('.datepicker').hide();
+//                jQuery('#start_date').attr('value', jQuery('#start_date').val());
+//            });
+//            $('#end_date').datepicker();
 
-            $('#start_date').datepicker();
-            $('#end_date').datepicker();
-
-
-
-            $('.timepicker').timepicker({
-                timeFormat: 'h:mm p',
-                interval: 15,
-                minTime: '10',
-                maxTime: '11:00pm',
-                defaultTime: '11',
-                startTime: '10:00',
-                dynamic: true,
-                dropdown: true,
-                scrollbar: true,
-            });
+//
+//
+//            $('.timepicker').timepicker({
+//                timeFormat: 'h:mm p',
+//                interval: 15,
+//                minTime: '10',
+//                maxTime: '11:00pm',
+//                defaultTime: '11',
+//                startTime: '10:00',
+//                dynamic: true,
+//                dropdown: true,
+//                scrollbar: true,
+//            });
 
 
             $("#create_event_btn").click(function() {
@@ -550,6 +564,18 @@
 
             });
 
+
+            $("#calendar").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/calendar',
+                    success: function(data) { //do something with the data via front-end framework //location.reload(); //renderHtml(data); 
+
+                        window.location.pathname = "/calendar"
+                    }
+                });
+                return false;
+            });
 
 
             $("#logout_navbar_btn").click(function() {

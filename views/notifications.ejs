@@ -166,6 +166,8 @@
                                 var flag = 0;
                                 //$("#notifications_table").empty();
                                 
+                                localStorage.setItem("notifications_number", requestedlist.length);
+                                
                                 for (var j = 0; j < requestedlist.length; j++) {
 
                                     var eventname = requestedlist[j].eventname;

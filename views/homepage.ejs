@@ -43,15 +43,19 @@
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
+
+
     <style>
         .jumbotron {
             position: relative;
-            background: #000 url("eventsback.jpg");
+            /*            background: #000 url("eventsback.jpg");*/
+            background: transparent;
             width: 100%;
             height: 100%;
             background-size: cover;
             overflow: inherit;
             background-blend-mode: lighten;
+
         }
 
         .above {
@@ -79,7 +83,21 @@
             z-index: 9999 !important;
         }
 
+        .col-sm-4 {
+            width: 31.833333%;
+            margin: 0.5%;
+        }
 
+        .special-card {
+            /* create a custom class so you 
+   do not run into specificity issues 
+   against bootstraps styles
+   which tends to work better than using !important 
+   (future you will thank you later)*/
+            background-color: rgba(245, 245, 245, 1);
+            opacity: .4;
+            font-weight: 400;
+        }
 
         .footer-distributed {
             background-color: #292c2f;
@@ -90,7 +108,7 @@
             font: bold 16px sans-serif;
 
             padding: 55px 50px;
-            margin-top: 80px;
+            margin-top: 0px;
         }
 
         .footer-distributed .footer-left,
@@ -255,7 +273,7 @@
 
 </head>
 
-<body>
+<body style="background: url('jumbo1.jpg'); background-repeat: no-repeat; height: 100%; width: 100%; background-size: cover;">
 
     <!-- Modal -->
     <div class="modal fade" id="eventCreatedModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -342,11 +360,11 @@
     </div>
 
 
-    <div class="container above">
+    <div class="container above" style="background: transparent;">
     </div>
     <!--nav bar-->
-    <nav class="navbar navbar-light" data-spy="affix" data-offset-top="10">
-        <div class="container-fluid" style="background-color: white;">
+    <nav class="navbar navbar-light" data-spy="affix" data-offset-top="10" style="background: transparent;">
+        <div class="container-fluid" style="background: transparent;">
             <div class="navbar-header">
                 <!--href to register page-->
                 <!--                <a class="navbar-brand" href="/public/index.html">-->
@@ -363,7 +381,10 @@
                     <button type="button" id="view_event_navbar_btn" class="btn btn-default" style="background-color: white; color: #680692; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;" href="#events_table">View Events</button>
                 </li>
                 <li>
-                    <button type="button" id="profile_name" class="btn btn-default" style="background-color: white; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Guest</button>
+                    <button type="button" id="profile_name" class="btn btn-default" style="background-color: white; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Guest<span class="badge" id="notifications">2</span></button>
+                </li>
+                <li>
+                    <button type="button" id="calendar" class="btn btn-default" style="background-color: white; color: #088b82; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Calendar</button>
                 </li>
                 <li>
                     <button type="button" id="logout_navbar_btn" class="btn btn-default" style="background-color: white; color: #ae1d1d; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Log Out</button>
@@ -382,32 +403,33 @@
 
     <div class="jumbotron jumbotron-fluid" style="margin-top: -1em;">
 
-        <h2 style="margin-left: 2em; margin-top: -1em; margin-bottom: 1em;">
-            <font color="#f7f7f7">Upcoming Events</font>
+        <h2 style="margin-left: 3.2em; margin-top: -1em; margin-bottom: 1em;">
+            <font color="ghostwhite">Upcoming Events</font>
         </h2>
 
         <center>
-            <div class="container">
+            <div class="container" style="display: inline-block;">
 
                 <div class="row">
-                    <div class="col-md-4" class="card-bg" style="background-color: #d4fcf4; margin-left: -1em; display: fixed;">
+                    <div class="col-sm-4" style="background: transparent; margin: 0.5em; border: 1px solid ghostwhite; border-radius: 0.5em;">
 
-                        <div class="card" style="width: 25rem; margin: 2em; height : 38rem;">
+                        <div class="card" style="margin: 2em;  min-height: 450px;">
 
                             <div class="card-block">
-                                <h4 class="card-title" id="event_name_card1">Event Name</h4>
-                                <p class="card-text" id="event_desc_card1">Event description</p>
+                                <h3 class="card-title" id="event_name_card1" style="color: #000000;">
+                                    <font size="10"></font>Event Name</h3>
+                                <p class="card-text" id="event_desc_card1" style="color: ghostwhite;">Event description</p>
                             </div>
-                            <ul class="list-group list-group-flush">
+                            <ul class="list-group list-group-flush special-card" style="background: transparent;">
                                 <li class="list-group-item">
-                                    <p id="event_start_date1" style="display: inline-block;"></p>&nbsp;&#64;
+                                    <p id="event_start_date1" style="display: inline-block; font-weight: 400"></p><br>&nbsp;&#64;<br>
                                     <span style="display: inline-block;"></span>
-                                    <p id="event_start_time1" style="display: inline-block;">11:11pm</p>
+                                    <p id="event_start_time1" style="display: inline-block; font-weight: 400">11:11pm</p>
                                 </li>
                                 <li class="list-group-item">
-                                    <p id="event_end_date1" style="display: inline-block;">11/11/11</p>&nbsp;&#64;
+                                    <p id="event_end_date1" style="display: inline-block; font-weight: 400">11/11/11</p><br>&nbsp;&#64;<br>
                                     <span style="display: inline-block;"></span>
-                                    <p id="event_end_time1" style="display: inline-block;">11:11pm</p>
+                                    <p id="event_end_time1" style="display: inline-block; font-weight: 400">11:11pm</p>
                                 </li>
                             </ul>
                             <div class="card-block">
@@ -427,24 +449,24 @@
 
                     </div>
 
-                    <div class="col-md-4" style="background-color: #fcfcd8; margin-left: 0.5em;">
+                    <div class="col-sm-4" style="background: transparent; margin: 0.5em; border: 1px solid ghostwhite; border-radius: 0.5em;">
 
-                        <div class="card" style="width: 25rem; margin: 2em; height: 38rem;">
+                        <div class="card" style="margin: 2em; min-height: 450px;">
 
                             <div class="card-block">
-                                <h4 class="card-title" id="event_name_card2">Event Name</h4>
-                                <p class="card-text" id="event_desc_card2">Event Description</p>
+                                <h4 class="card-title" id="event_name_card2" style="color: #000000;">Event Name</h4>
+                                <p class="card-text" id="event_desc_card2" style="color: ghostwhite;">Event Description</p>
                             </div>
-                            <ul class="list-group list-group-flush">
+                            <ul class="list-group list-group-flush special-card" style="background: transparent;">
                                 <li class="list-group-item">
-                                    <p id="event_start_date2" style="display: inline-block;">11/11/11</p>&nbsp;&#64;
+                                    <p id="event_start_date2" style="display: inline-block;font-weight: 400">11/11/11</p><br>&nbsp;&#64;<br>
                                     <span style="display: inline-block;"></span>
-                                    <p id="event_start_time2" style="display: inline-block;">11:11pm</p>
+                                    <p id="event_start_time2" style="display: inline-block;font-weight: 400">11:11pm</p>
                                 </li>
                                 <li class="list-group-item">
-                                    <p id="event_end_date2" style="display: inline-block;">11/11/11</p>&nbsp;&#64;
+                                    <p id="event_end_date2" style="display: inline-block;font-weight: 400">11/11/11</p><br>&nbsp;&#64;<br>
                                     <span style="display: inline-block;"></span>
-                                    <p id="event_end_time2" style="display: inline-block;">11:11pm</p>
+                                    <p id="event_end_time2" style="display: inline-block;font-weight: 400">11:11pm</p>
                                 </li>
                             </ul>
                             <div class="card-block">
@@ -463,24 +485,25 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4" class="card-bg" style="background-color: #fbc9c9; margin-left: 0.5em;">
+                    <div class="col-sm-4" style="background: transparent; margin: 0.5em; border: 1px solid ghostwhite; border-radius: 0.5em;">
 
-                        <div class="card" style="width: 25rem; margin: 2em; height: 38rem;">
+                        <div class="card" style="margin: 2em; min-height: 450px;">
 
                             <div class="card-block">
-                                <h4 class="card-title" id="event_name_card3">Event Name</h4>
-                                <p class="card-text" id="event_desc_card3">Event Description</p>
+                                <h4 class="card-title" id="event_name_card3" style="color: #000000;">Event Name</h4>
+                                <p class="card-text" id="event_desc_card3" style="color: ghostwhite;">Event Description</p>
                             </div>
-                            <ul class="list-group list-group-flush">
+                            <ul class="list-group list-group-flush special-card" style="background: transparent;">
                                 <li class="list-group-item">
-                                    <p id="event_start_date3" style="display: inline-block;">11/11/11</p>&nbsp;&#64;
+                                    <p id="event_start_date3" style="display: inline-block;font-weight: 400">11/11/11</p>
+                                    <br>&nbsp;&#64;<br>
                                     <span style="display: inline-block;"></span>
-                                    <p id="event_start_time3" style="display: inline-block;">11:11pm</p>
+                                    <p id="event_start_time3" style="display: inline-block;font-weight: 400">11:11pm</p>
                                 </li>
                                 <li class="list-group-item">
-                                    <p id="event_end_date3" style="display: inline-block;">11/11/11</p>&nbsp;&#64;
-                                    <span style="display: inline-block;"></span>
-                                    <p id="event_end_time3" style="display: inline-block;">11:11pm</p>
+                                    <p id="event_end_date3" style="display: inline-block;font-weight: 400">11/11/11</p><br>&nbsp;&#64;<br>
+                                    <span style="display: inline-block;font-weight: 400"></span>
+                                    <p id="event_end_time3" style="display: inline-block;font-weight: 400">11:11pm</p>
                                 </li>
                             </ul>
                             <div class="card-block">
@@ -504,15 +527,17 @@
     </div>
 
 
-
-    <section style="margin: 2em; margin-right: 6em; margin-top: 5em;" id="events_section">
-        <div style="margin: 2em; margin-left: 4em;">
-            <h2 id="events_heading"></h2>
-        </div>
-        <div style="margin: 2em; ">
-            <table class="table table-hover table-bordered" id="events_table" style="margin: 2em; margin-right: 6em;"></table>
-        </div>
-    </section>
+    <center>
+        <section style="margin: 3em; padding-top: 170px; margin-right: 7.5em;" id="events_section">
+            <h2 class="pull-left" style="margin: 1.8em; color: ghostwhite;">List of events</h2>
+            <div style="margin: 2em; opacity: 100;">
+                <h2 id="events_heading"></h2>
+            </div>
+            <div style="margin: 2em; opacity: 5; ">
+                <table class="table table-hover table-bordered" id="events_table" style="margin: 2em; border: 2px solid ghostwhite"></table>
+            </div>
+        </section>
+    </center>
 
 
 
@@ -568,16 +593,37 @@
 
     </footer>
 
-
-
     <script type="text/javascript">
         //function requestBtnClicked(data);
 
         $(document).ready(function() {
 
-            var username_print = localStorage.getItem("username_local");
-            document.getElementById("profile_name").innerHTML = username_print;
 
+            //  ...............delete events prior to current day...................
+            $.ajax({
+                type: 'POST',
+                url: '/deleteEvents',
+                success: function(data) {
+                    console.log("deleted previous events!");
+                }
+            });
+            //......................................................................
+
+
+            
+            
+            //....................Notifications number
+            
+
+
+
+            var username_print = localStorage.getItem("username_local");
+            var badge_number = localStorage.getItem("notifications_number");
+            document.getElementById("profile_name").innerHTML = username_print + "<span class=\"badge\" id=\"notifications\">" + badge_number + "</span>";
+            //            var y = document.getElementsByClassName('badge');
+            //            y[0].innerText("10");
+            //            $("#notifications").empty();
+            //            $("#notifications").append("10");
 
             $(function() {
 
@@ -661,11 +707,24 @@
                 return false;
             });
 
+            $("#calendar").click(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/calendar',
+                    success: function(data) {
+                        window.location.pathname = "/calendar"
+                        console.log("calendar rendered");
+                    }
+
+                });
+                return false;
+            });
+
 
             $("#contact_us").click(function() {
                 $('html,body').animate({
                     scrollTop: $("#footer_section").offset().top
-                }, 'medium');
+                }, 'slow');
 
             });
 
@@ -673,7 +732,7 @@
             $("#view_event_navbar_btn").click(function() {
                 $('html,body').animate({
                     scrollTop: $("#events_section").offset().top
-                }, 'medium');
+                }, 'slow');
             });
 
 
@@ -695,7 +754,7 @@
                     var events = data;
 
                     $("#events_table").empty();
-                    var header = "<thead class=\"thead-inverse\"><th colspan=\"2\"><p>EventName</p></th><th><p>Event Description</p></th><th><p>Starts on</p></th><th><p>Starts at</p></th><th><p>Ends on</p></th><th><p>Ends at</p></th><th><p>Interested</p></th></thead>";
+                    var header = "<thead style=\"background-color: #363939;\"><th colspan=\"2\"><p  style=\"color: ghostwhite;\">EventName</p></th><th><p style=\"color: ghostwhite;\">Event Description</p></th><th><p  style=\"color: ghostwhite;\">Starts on</p></th><th><p  style=\"color: ghostwhite;\">Starts at</p></th><th><p  style=\"color: ghostwhite;\">Ends on</p></th><th><p  style=\"color: ghostwhite;\">Ends at</p></th><th><p  style=\"color: ghostwhite;\">Interested</p></th></thead>";
                     $("#events_table").append(header);
 
 
@@ -703,13 +762,17 @@
                         var eventname = events[i].eventname;
                         var eventdesc = events[i].eventdesc;
                         var startdate = events[i].startdate;
+
+                        var startdate_final = startdate.substr(0, 10);
+
                         var starttime = events[i].starttime;
                         var enddate = events[i].enddate;
+                        var enddate_final = enddate.substr(0, 10);
                         var endtime = events[i].endtime;
 
                         //alert(eventname);
 
-                        var tdata = "<tr><td><p>" + eventname + "</p></td><td colspan=\"2\"><p>" + eventdesc + "</p></td><td><p>" + startdate + "</p></td><p>&nbsp; &#64; </p> <td><p>" + starttime + "</p></td><p>&nbsp; &#64;</p><td><p>" + enddate + "</p></td><td><p>" + endtime + "</p></td>" + "<td><button class=\"btn btn-default\" id=\"btnTable" + i + "\" type=\"button\">Interested</button></td>" + "</tr>";
+                        var tdata = "<tr><font size=\"8\"><td><p>" + eventname + "</p></td><td colspan=\"2\"><p>" + eventdesc + "</p></td><td><p>" + startdate_final + "</p></td><p>&nbsp; &#64; </p> <td><p>" + starttime + "</p></td><p>&nbsp; &#64;</p><td><p>" + enddate_final + "</p></td><td><p>" + endtime + "</p></td>" + "<td><button class=\"btn btn-default\" id=\"btnTable" + i + "\" type=\"button\">Interested</button></td>" + "</font></tr>";
 
                         $("#events_table").prepend(tdata);
                         console.log(eventname);
@@ -720,7 +783,6 @@
                     $('#events_table').find('tr').click(function() {
 
                         var i = $(this).index();
-
 
                         var username_request = username_print;
                         var eventname_request = events[i].eventname;
@@ -792,9 +854,9 @@
         for (var i = 0; i < 1; i++) {
             var eventname = events[i].eventname;
             var eventdesc = events[i].eventdesc;
-            var startdate = events[i].startdate;
+            var startdate = events[i].startdate.substr(0, 10);
             var starttime = events[i].starttime;
-            var enddate = events[i].enddate;
+            var enddate = events[i].enddate.substr(0, 10);
             var endtime = events[i].endtime;
 
             //alert(eventname);
@@ -811,9 +873,9 @@
         for (var i = 1; i < 2; i++) {
             var eventname = events[i].eventname;
             var eventdesc = events[i].eventdesc;
-            var startdate = events[i].startdate;
+            var startdate = events[i].startdate.substr(0, 10);
             var starttime = events[i].starttime;
-            var enddate = events[i].enddate;
+            var enddate = events[i].enddate.substr(0, 10);
             var endtime = events[i].endtime;
 
             //alert(eventname);
@@ -830,9 +892,9 @@
         for (var i = 2; i < 3; i++) {
             var eventname = events[i].eventname;
             var eventdesc = events[i].eventdesc;
-            var startdate = events[i].startdate;
+            var startdate = events[i].startdate.substr(0, 10);
             var starttime = events[i].starttime;
-            var enddate = events[i].enddate;
+            var enddate = events[i].enddate.substr(0, 10);
             var endtime = events[i].endtime;
 
             //alert(eventname);
