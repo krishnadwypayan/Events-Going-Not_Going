@@ -48,14 +48,14 @@
     <style>
         .jumbotron {
             position: relative;
-            /*            background: #000 url("eventsback.jpg");*/
+            /*            background: #000 url("jumbo1.jpg");*/
             background: transparent;
             width: 100%;
             height: 100%;
             background-size: cover;
-            overflow: inherit;
+            overflow: hidden;
             background-blend-mode: lighten;
-
+            margin-bottom: -30px;
         }
 
         .above {
@@ -88,6 +88,11 @@
             margin: 0.5%;
         }
 
+
+        .myelement {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
         .special-card {
             /* create a custom class so you 
    do not run into specificity issues 
@@ -99,8 +104,9 @@
             font-weight: 400;
         }
 
+
         .footer-distributed {
-            background-color: #292c2f;
+            background-color: #ffffff;
             box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
             box-sizing: border-box;
             width: 100%;
@@ -127,7 +133,7 @@
         /* The company logo */
 
         .footer-distributed h3 {
-            color: #ffffff;
+            color: #000000;
             font: normal 36px 'Cookie', cursive;
             margin: 0;
         }
@@ -139,7 +145,7 @@
         /* Footer links */
 
         .footer-distributed .footer-links {
-            color: #ffffff;
+            color: #000000;
             margin: 20px 0 12px;
             padding: 0;
         }
@@ -184,7 +190,7 @@
 
         .footer-distributed .footer-center p {
             display: inline-block;
-            color: #ffffff;
+            color: #000000;
             vertical-align: middle;
             margin: 0;
         }
@@ -219,7 +225,7 @@
 
         .footer-distributed .footer-company-about span {
             display: block;
-            color: #ffffff;
+            color: #000000;
             font-size: 14px;
             font-weight: bold;
             margin-bottom: 20px;
@@ -273,7 +279,7 @@
 
 </head>
 
-<body style="background: url('jumbo1.jpg'); background-repeat: no-repeat; height: 100%; width: 100%; background-size: cover;">
+<body style="background: url('homeback.jpg'); background-repeat: no-repeat; background-size: 100%;">
 
     <!-- Modal -->
     <div class="modal fade" id="eventCreatedModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -359,39 +365,38 @@
         </div>
     </div>
 
+    <!--
 
     <div class="container above" style="background: transparent;">
     </div>
+-->
     <!--nav bar-->
-    <nav class="navbar navbar-light" data-spy="affix" data-offset-top="10" style="background: transparent;">
-        <div class="container-fluid" style="background: transparent;">
+    <nav class="navbar navbar-light myelement" data-spy="affix" data-offset-top="10" style="margin-bottom: 0.5em;">
+        <div class="container-fluid" style="background: transparent; margin: 0.5em;">
             <div class="navbar-header">
-                <!--href to register page-->
-                <!--                <a class="navbar-brand" href="/public/index.html">-->
-                <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
-                <!--                    <i style="display: inline-block; margin-right: 1.5em;" class="glyphicon glyphicon-calendar"></i>-->
-                <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
+                <img style="display: inline-block; height: 3em; width: 3em; margin-top: -0.5em;" src="datelogo.png">
+                <span style="display: inline-block; font: bold 36px 'Cookie', cursive;"><font size="6.5" color="black">NotifyMe</font></span>
             </div>
 
             <ul class="nav navbar-nav mr-auto pull-right" style="display: inline-block; margin-bottom: 0.5em;">
                 <li>
-                    <button type="button" id="create_event_navbar_btn" class="btn btn-default" style="background-color: white; color: #09609f; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50;">Create Event</button>
+                    <button type="button" id="create_event_navbar_btn" class="btn btn-default" style="background-color: transparent; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50;">Create Event</button>
                 </li>
                 <li>
-                    <button type="button" id="view_event_navbar_btn" class="btn btn-default" style="background-color: white; color: #680692; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;" href="#events_table">View Events</button>
+                    <button type="button" id="view_event_navbar_btn" class="btn btn-default" style="background-color: transparent; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 0.5em;" href="#events_table">View Events</button>
                 </li>
                 <li>
-                    <button type="button" id="profile_name" class="btn btn-default" style="background-color: white; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Guest<span class="badge" id="notifications">2</span></button>
+                    <button type="button" id="profile_name" class="btn btn-default" style="background-color: transparent; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 0.5em;">Guest<span class="badge" id="notifications">2</span></button>
                 </li>
                 <li>
-                    <button type="button" id="calendar" class="btn btn-default" style="background-color: white; color: #088b82; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Calendar</button>
+                    <button type="button" id="calendar" class="btn btn-default" style="background-color: transparent; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 0.5em;">Calendar</button>
                 </li>
                 <li>
-                    <button type="button" id="logout_navbar_btn" class="btn btn-default" style="background-color: white; color: #ae1d1d; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Log Out</button>
+                    <button type="button" id="logout_navbar_btn" class="btn btn-default" style="background-color: transparent; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 0.5em;">Log Out</button>
                 </li>
 
                 <li>
-                    <button type="button" id="contact_us" class="btn btn-default" style="background-color: white; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Contact Us</button>
+                    <button type="button" id="contact_us" class="btn btn-default" style="background-color: transparent; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 0.5em;">Contact Us</button>
                 </li>
 
             </ul>
@@ -404,23 +409,25 @@
     <div class="jumbotron jumbotron-fluid" style="margin-top: -1em;">
 
         <h2 style="margin-left: 3.2em; margin-top: -1em; margin-bottom: 1em;">
-            <font color="ghostwhite">Upcoming Events</font>
+            <font color=#095c8f>Upcoming Events</font>
         </h2>
 
         <center>
             <div class="container" style="display: inline-block;">
 
                 <div class="row">
-                    <div class="col-sm-4" style="background: transparent; margin: 0.5em; border: 1px solid ghostwhite; border-radius: 0.5em;">
+                    <div class="col-sm-4" style="background: rgba(0,0,0,0.1); margin: 0.5em; border: 1px solid ghostwhite; border-radius: 0.5em;">
 
                         <div class="card" style="margin: 2em;  min-height: 450px;">
 
                             <div class="card-block">
-                                <h3 class="card-title" id="event_name_card1" style="color: #000000;">
-                                    <font size="10"></font>Event Name</h3>
-                                <p class="card-text" id="event_desc_card1" style="color: ghostwhite;">Event description</p>
+                                <h4 class="card-title" id="event_name_card1" style="color: #000000;">
+                                    <font color=#095c8f></font>Event Name</h4>
+                                <p class="card-text" id="event_desc_card1" style="color: #095c8f;">
+                                    <font size=5 color=#095c8f>Event description</font>
+                                </p>
                             </div>
-                            <ul class="list-group list-group-flush special-card" style="background: transparent;">
+                            <ul class="list-group list-group-flush special-card" style="background: transparent;opacity: 0.7">
                                 <li class="list-group-item">
                                     <p id="event_start_date1" style="display: inline-block; font-weight: 400"></p><br>&nbsp;&#64;<br>
                                     <span style="display: inline-block;"></span>
@@ -449,17 +456,21 @@
 
                     </div>
 
-                    <div class="col-sm-4" style="background: transparent; margin: 0.5em; border: 1px solid ghostwhite; border-radius: 0.5em;">
+                    <div class="col-sm-4" style="background: rgba(0,0,0,0.1); margin: 0.5em; border: 1px solid ghostwhite; border-radius: 0.5em;">
 
                         <div class="card" style="margin: 2em; min-height: 450px;">
 
                             <div class="card-block">
-                                <h4 class="card-title" id="event_name_card2" style="color: #000000;">Event Name</h4>
-                                <p class="card-text" id="event_desc_card2" style="color: ghostwhite;">Event Description</p>
+                                <h4 class="card-title" id="event_name_card2" style="color: #000000;">
+                                    <font size=5 color=#095c8f>Event description</font>Event Name</h4>
+                                <p class="card-text" id="event_desc_card2" style="color: #095c8f;">
+                                    <font size=5 color=#095c8f>Event description</font>Event Description</p>
                             </div>
-                            <ul class="list-group list-group-flush special-card" style="background: transparent;">
+                            <ul class="list-group list-group-flush special-card" style="background: transparent; opacity: 0.7">
                                 <li class="list-group-item">
-                                    <p id="event_start_date2" style="display: inline-block;font-weight: 400">11/11/11</p><br>&nbsp;&#64;<br>
+                                    <p id="event_start_date2" style="display: inline-block;font-weight: 400">
+                                        <font size=5 color=#095c8f>11/11/11</font>
+                                    </p><br>&nbsp;&#64;<br>
                                     <span style="display: inline-block;"></span>
                                     <p id="event_start_time2" style="display: inline-block;font-weight: 400">11:11pm</p>
                                 </li>
@@ -485,15 +496,17 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-4" style="background: transparent; margin: 0.5em; border: 1px solid ghostwhite; border-radius: 0.5em;">
+                    <div class="col-sm-4" style="background: rgba(0,0,0,0.1); margin: 0.5em; border: 1px solid ghostwhite; border-radius: 0.5em;">
 
                         <div class="card" style="margin: 2em; min-height: 450px;">
 
                             <div class="card-block">
-                                <h4 class="card-title" id="event_name_card3" style="color: #000000;">Event Name</h4>
-                                <p class="card-text" id="event_desc_card3" style="color: ghostwhite;">Event Description</p>
+                                <h4 class="card-title" id="event_name_card3" style="color: #000000;">
+                                    <font size=5 color=#095c8f>Event description</font>Event Name</h4>
+                                <p class="card-text" id="event_desc_card3" style="color: #095c8f;">
+                                    <font size=5 color=#095c8f>Event description</font>Event Description</p>
                             </div>
-                            <ul class="list-group list-group-flush special-card" style="background: transparent;">
+                            <ul class="list-group list-group-flush special-card" style="background: transparent;opacity:0.7">
                                 <li class="list-group-item">
                                     <p id="event_start_date3" style="display: inline-block;font-weight: 400">11/11/11</p>
                                     <br>&nbsp;&#64;<br>
@@ -526,23 +539,22 @@
         </center>
     </div>
 
-
-    <center>
-        <section style="margin: 3em; padding-top: 170px; margin-right: 7.5em;" id="events_section">
-            <h2 class="pull-left" style="margin: 1.8em; color: ghostwhite;">List of events</h2>
-            <div style="margin: 2em; opacity: 100;">
-                <h2 id="events_heading"></h2>
-            </div>
-            <div style="margin: 2em; opacity: 5; ">
-                <table class="table table-hover table-bordered" id="events_table" style="margin: 2em; border: 2px solid ghostwhite"></table>
-            </div>
-        </section>
-    </center>
-
-
-
-    <div style="margin-top: 15em;">
+    <div style="margin-top: 3em; background: url('eventlistback.jpg'); background-repeat: no-repeat; background-size: 100%;" id="events_section">
+        <center>
+            <section style="margin: 3em; padding-top: 100px; padding-bottom: 150px; margin-right: 7.5em; color=#095c8f; background: transparent; opacity: 1;">
+                <h2 class="pull-left" style="margin: 1.8em; ">
+                    <font color=#095c8f>List of events</font>
+                </h2>
+                <div style="margin: 2em; opacity: 1;">
+                    <h2 id="events_heading"></h2>
+                </div>
+                <div style="margin: 2em; background: transparent; opacity: 4; ">
+                    <table class="table table-hover table-bordered" id="events_table" style="margin: 2em; border: 2px solid ghostwhite"></table>
+                </div>
+            </section>
+        </center>
     </div>
+
 
 
     <footer class="footer-distributed" id="footer_section">
@@ -599,6 +611,14 @@
         $(document).ready(function() {
 
 
+            $(document).on('scroll', function(e) {
+                if ($(window).width() > 992) {
+                    var rgba = $(document).scrollTop() / 500;
+                    $('.navbar').css('background-color', 'rgba(255,255,255,' + rgba + ')');
+                }
+            });
+
+            var username_print, badge_number;
             //  ...............delete events prior to current day...................
             $.ajax({
                 type: 'POST',
@@ -609,21 +629,68 @@
             });
             //......................................................................
 
+            document.getElementById("profile_name").innerHTML = localStorage.getItem("username_local") + "<span class=\"badge\" id=\"notifications\">0</span>";
 
-            
-            
+
+
             //....................Notifications number
-            
 
 
+            var event_creator = localStorage.getItem("username_local");
+            var creator = {
+                creator: event_creator
+            };
+            console.log("........................." + creator.creator + "...............................");
+            $.ajax({
+                type: 'POST',
+                data: creator,
+                url: '/getEventnameForNotification',
+                success: function(data) {
 
-            var username_print = localStorage.getItem("username_local");
-            var badge_number = localStorage.getItem("notifications_number");
-            document.getElementById("profile_name").innerHTML = username_print + "<span class=\"badge\" id=\"notifications\">" + badge_number + "</span>";
-            //            var y = document.getElementsByClassName('badge');
-            //            y[0].innerText("10");
-            //            $("#notifications").empty();
-            //            $("#notifications").append("10");
+
+                    console.log("eventslist ka data " + data);
+                    var eventslistdetails = data;
+
+
+                    // for every event query inside requestedEvents
+
+                    var count_notifications = 0;
+                    for (var i = 0; i < eventslistdetails.length; i++) {
+
+                        var eventname = {
+                            eventname: eventslistdetails[i].eventname
+                        };
+                        console.log("\nfor ke andar " + eventname);
+
+                        $.ajax({
+
+                            type: 'POST',
+                            data: eventname,
+                            url: '/getNotifications',
+                            success: function(data) {
+
+                                var requestedlist = data;
+                                var flag = 0;
+                                //$("#notifications_table").empty();
+                                for (var j = 0; j < requestedlist.length; j++) {
+
+                                    var eventname = requestedlist[j].eventname;
+                                    var username = requestedlist[j].username;
+                                    console.log(requestedlist[j].username);
+                                    count_notifications++;
+                                }
+                                console.log("count_notifications.........." + count_notifications);
+                                localStorage.setItem("notifications_number", count_notifications);
+                                username_print = localStorage.getItem("username_local");
+                                badge_number = localStorage.getItem("notifications_number");
+                                document.getElementById("profile_name").innerHTML = username_print + "&nbsp;&nbsp;<span class=\"badge\" id=\"notifications\">&nbsp;" + badge_number + "</span>";
+                            }
+                        });
+                    }
+
+                }
+            });
+
 
             $(function() {
 
@@ -754,7 +821,7 @@
                     var events = data;
 
                     $("#events_table").empty();
-                    var header = "<thead style=\"background-color: #363939;\"><th colspan=\"2\"><p  style=\"color: ghostwhite;\">EventName</p></th><th><p style=\"color: ghostwhite;\">Event Description</p></th><th><p  style=\"color: ghostwhite;\">Starts on</p></th><th><p  style=\"color: ghostwhite;\">Starts at</p></th><th><p  style=\"color: ghostwhite;\">Ends on</p></th><th><p  style=\"color: ghostwhite;\">Ends at</p></th><th><p  style=\"color: ghostwhite;\">Interested</p></th></thead>";
+                    var header = "<thead style=\"background-color: #363939;\"><th colspan=\"2\"><p  style=\"color: ghostwhite;\"><font size=\"4\">EventName</p></th><th><p style=\"color: ghostwhite;\"><font size=\"4\">Event Description</p></th><th><p  style=\"color: ghostwhite;\"><font size=\"4\">Starts on</p></th><th><p  style=\"color: ghostwhite;\"><font size=\"4\">Starts at</p></th><th><p  style=\"color: ghostwhite;\"><font size=\"4\">Ends on</p></th><th><p  style=\"color: ghostwhite;\"><font size=\"4\">Ends at</p></th><th><p  style=\"color: ghostwhite;\"><font size=\"4\">Status</p></th></thead>";
                     $("#events_table").append(header);
 
 
@@ -772,19 +839,51 @@
 
                         //alert(eventname);
 
-                        var tdata = "<tr><font size=\"8\"><td><p>" + eventname + "</p></td><td colspan=\"2\"><p>" + eventdesc + "</p></td><td><p>" + startdate_final + "</p></td><p>&nbsp; &#64; </p> <td><p>" + starttime + "</p></td><p>&nbsp; &#64;</p><td><p>" + enddate_final + "</p></td><td><p>" + endtime + "</p></td>" + "<td><button class=\"btn btn-default\" id=\"btnTable" + i + "\" type=\"button\">Interested</button></td>" + "</font></tr>";
 
-                        $("#events_table").prepend(tdata);
-                        console.log(eventname);
-                        //console.log(tdata);
+                        var findStatus = {
+                            username: localStorage.getItem("username_local"),
+                            eventname: eventname
+                        };
+                        var status;
+                        var flag = 0;
+                        $.ajax({
+                            type: 'POST',
+                            data: findStatus,
+                            url: '/findStatus',
+                            success: function(data) {
+                                status = data[0].status;
+                                console.log(status);
+
+                                flag = 1;
+                                var tdata = "<tr style=\"background: ghostwhite;\"><td><p><font size=\"4\" color=#363939>" + eventname + "</font></p></td><td colspan=\"2\"><p><font size=\"4\" color=#363939>" + eventdesc + "</p></td><td><p><font size=\"4\" color=#363939>" + startdate_final + "</p></td><p>&nbsp; &#64; </p> <td><p><font size=\"4\" color=#363939>" + starttime + "</p></td><p>&nbsp; &#64;</p><td><p><font size=\"4\" color=#363939>" + enddate_final + "</p></td><td><p><font size=\"4\" color=#363939>" + endtime + "</p></td>" + "<td><font size=\"4\" color=#363939>" + status + "</td></font></tr>";
+
+                                $("#events_table").prepend(tdata);
+                                console.log(eventname);
+                            }
+                        });
+
+                        console.log("jbhgvfdxfcgvhbj " + status);
+                        if (status == undefined)
+                            status = "Interested";
+
+                        if (flag == 0) {
+
+                            var tdata = "<tr style=\"background: ghostwhite;\"><td><p><font size=\"4\" color=#363939>" + eventname + "</font></p></td><td colspan=\"2\"><p><font size=\"4\" color=#363939>" + eventdesc + "</p></td><td><p><font size=\"4\" color=#363939>" + startdate_final + "</p></td><p>&nbsp; &#64; </p> <td><p><font size=\"4\" color=#363939>" + starttime + "</p></td><p>&nbsp; &#64;</p><td><p><font size=\"4\" color=#363939>" + enddate_final + "</p></td><td><p><font size=\"4\" color=#363939>" + endtime + "</p></td>" + "<td id=\"status>"+i+"\"><font size=\"4\" color=#363939>" + status + "</td></font></tr>";
+
+                            $("#events_table").prepend(tdata);
+                            console.log(eventname);
+                            console.log(tdata);
+
+                        }
+
 
                     }
 
                     $('#events_table').find('tr').click(function() {
 
                         var i = $(this).index();
-
-                        var username_request = username_print;
+                        
+                        var username_request = localStorage.getItem("username_local");
                         var eventname_request = events[i].eventname;
                         var data = {
                             username_request: username_request,
@@ -812,7 +911,7 @@
                                 }
                                 if (data_received[0].capacity > 0) {
 
-                                    var username_request = username_print;
+                                    var username_request = localStorage.getItem("username_local");
                                     var eventname_request = events[i].eventname;
                                     var data_new = {
                                         username_request: username_request,
@@ -828,7 +927,8 @@
                                         success: function(dataX) {
                                             console.log("inside request event call back");
                                             console.log(dataX);
-
+                                            
+                                            document.getElementById("status"+i).innerHTML = "Requested";
 
                                             //alert(data_new[0].username_request + " " + data_new[0].eventname_request);
                                             window.location.pathname = "/home"

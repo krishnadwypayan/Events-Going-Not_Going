@@ -47,7 +47,9 @@
             padding-top: 0px;
         }
 
-
+        .myelement {
+            background: rgba(0,0,0,0.15);
+        }
 
         /*        ...............................................................................................*/
 
@@ -330,11 +332,11 @@
 
 
 
-    <div class="container" style="background: transparent;">
+    <div class="container" style="background: transparent; ">
     </div>
     <!--nav bar-->
-    <nav class="navbar navbar-light" data-spy="affix" data-offset-top="10" style="margin-bottom: 0.5em; background: transparent;">
-        <div class="container-fluid" style="background-color: transparent;">
+    <nav class="navbar navbar-light myelement" data-spy="affix" data-offset-top="10" style="margin-bottom: 0.5em;">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <img style="display: inline-block; height: 3em; width: 3em; margin-top: -0.5em;" src="datelogo.png">
                 <span style="display: inline-block; font: bold 36px 'Cookie', cursive;"><font size="6" color="black">NotifyMe</font></span>
@@ -424,7 +426,7 @@
             <span><img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png"></span>
             <h3 style="display: inline-block;">NotifyMe</h3>
 
-            <p class="footer-company-name" style="margin-top: 1em;">NotifyMe &copy; 2017</p>
+            <p class="footer-company-name" style="margin: 1em;">NotifyMe &copy; 2017</p>
         </div>
 
         <div class="footer-center">
@@ -449,7 +451,7 @@
         <div class="footer-right">
 
             <p class="footer-company-about">
-                <span>About the company</span> Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+                <span>About the company</span> Share and create events. Reach out to a wider community through our website.
             </p>
 
             <div class="footer-icons">
@@ -487,15 +489,23 @@
             document.getElementById("login_navbar").onmouseout = function() {
                 this.style.background = "transparent";
                 this.style.border = "2px solid #44be2c";
-//                this.style.color = "ghostwhite";
+                //                this.style.color = "ghostwhite";
             }
         }
 
 
         $(document).ready(function() {
+            
+            
+            $(document).on('scroll', function(e) {
+                if ($(window).width() > 992) {
+                    var rgba = $(document).scrollTop() / 500;
+                    $('.navbar').css('background-color', 'rgba(255,255,255,' + rgba + ')');
+                }
+            });
 
             console.log("signup document ready");
-
+            
             $("#signup_btn").click(function() {
 
                 var username = document.getElementById("username").value;
