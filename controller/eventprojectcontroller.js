@@ -62,7 +62,7 @@ const requestEventSchema = new Schema({
 
     username: String,
     eventname: String,
-
+    status : String
 });
 
 const requestEvent = mongoose.model('requesteventscollections', requestEventSchema);
@@ -72,9 +72,9 @@ const requestEvent = mongoose.model('requesteventscollections', requestEventSche
 
 const approveUserSchema = new Schema({
 
-    creator: String,
     user_attending: String,
-    eventname: String
+    eventname: String,
+    status: String
 
 });
 
@@ -223,10 +223,11 @@ module.exports = function (app) {
 
         const request = new requestEvent({
             username: req.body.username_request,
-            eventname: req.body.eventname_request
+            eventname: req.body.eventname_request,
+            status : "Requested",
         });
 
-        console.log(request.username + " request kiya for " + request.eventname);
+        console.log(request.username + " request kiya for " + request.eventname + " toh status bana diya " + request.status);
 
         request.save().then(function (result) {
             console.log("requested for entry to " + request.eventname + " by " + request.username);
@@ -264,7 +265,7 @@ module.exports = function (app) {
         var eventname = req.body.eventname;
         console.log("idhar shayaddikkat hai " + eventname);
         requestEvent.find({
-            eventname: eventname,
+            eventname: eventname,status: { $ne: "Approved" } 
         }).then(function (result) {
             console.log("gadbad..." + result);
             res.json(result);
@@ -283,7 +284,7 @@ module.exports = function (app) {
             eventname: req.body.eventname,
             username: req.body.username,
         }).then(function (err, result) {
-            console.log("removed" + req.body.username);
+            console.log("Status approved" + req.body.username);
         });
 
         CreateEvent.findOneAndUpdate({
@@ -295,6 +296,18 @@ module.exports = function (app) {
         }).then(function (err, result) {
             console.log(result.capacity);
             res.json(result);
+        });
+        
+        const approve_user = new approveUser({
+            user_attending: req.body.username,
+            eventname: req.body.eventname,
+            status : "Approved",
+        });
+        
+        approve_user.save().then(function (result) {
+            console.log("approved user" + username);
+            res.render('notifications');
+
         });
 
     });
@@ -318,6 +331,17 @@ module.exports = function (app) {
         res.render('footer');
     });
 
+    
+    app.post('/findStatus', urlencodedParser, function (req, res) {
+        console.log("find status for " + req.body.eventname + " " + req.body.username);
+        requestEvent.find({
+            eventname: req.body.eventname,
+            username: req.body.username
+        }).then(function (result) {
+            console.log("status found is " + result.status);
+            res.json(result);
+        });
+    });
 
 
 };
