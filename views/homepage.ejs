@@ -307,6 +307,27 @@
     </div>
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="eventrequestedmodal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <center>
+                        <img style="display: inline-block; height: 3em; width: 3em; margin-top: -0.5em;" src="datelogo.png">
+                        <span style="display: inline-block; font: bold 36px 'Cookie', cursive;"><font size="6" color="black">NotifyMe</font></span>
+                    </center>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-title">Event Clicked!</h4>
+                    <p style="margin: 1.5em;">Event request sent!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
 
@@ -539,17 +560,30 @@
         </center>
     </div>
 
-    <div style="margin-top: 3em; background: url('eventlistback.jpg'); background-repeat: no-repeat; background-size: 100%;" id="events_section">
+    <div style="margin-top: 3em; background: url('eventlistback.jpg'); background-repeat: no-repeat; background-size: cover;" id="events_section">
         <center>
             <section style="margin: 3em; padding-top: 100px; padding-bottom: 150px; margin-right: 7.5em; color=#095c8f; background: transparent; opacity: 1;">
                 <h2 class="pull-left" style="margin: 1.8em; ">
                     <font color=#095c8f>List of events</font>
                 </h2>
-                <div style="margin: 2em; opacity: 1;">
-                    <h2 id="events_heading"></h2>
-                </div>
-                <div style="margin: 2em; background: transparent; opacity: 4; ">
-                    <table class="table table-hover table-bordered" id="events_table" style="margin: 2em; border: 2px solid ghostwhite"></table>
+                <div>
+                    <div style="margin: 2em; opacity: 1;">
+                        <h2 id="events_heading"></h2>
+                    </div>
+                    <div style="margin: 2em; background: transparent; opacity: 4; ">
+                        <table class="table table-hover table-bordered" id="events_table" style="margin: 2em; border: 2px solid ghostwhite"></table>
+                    </div>
+                    
+
+                    <h3 class="pull-left" style="margin: 2.2em;">
+                        <font color=#095c8f>Approved events</font>
+                    </h3>
+                    <div style="margin: 2em; opacity: 1;">
+                        <h2 id="events_approved_heading"></h2>
+                    </div>
+                    <div style="margin: 2em; background: transparent; opacity: 4; ">
+                        <table class="table table-hover table-bordered" id="events_approved_table" style="margin: 2em; border: 2px solid ghostwhite"></table>
+                    </div>
                 </div>
             </section>
         </center>
@@ -692,6 +726,47 @@
             });
 
 
+
+            //.....................................approved eents list............................
+
+
+            var user_attending = localStorage.getItem("username_local");
+            var user_attending = {
+                user_attending: user_attending
+            };
+
+            $.ajax({
+
+                type: 'POST',
+                data: user_attending,
+                url: '/approvedList',
+                success: function(data) {
+                    console.log(data);
+                    var events = data;
+
+                    $("#events_approved_table").empty();
+                    var header = "<thead style=\"background-color: #363939;\"><th><p  style=\"color: ghostwhite;\"><font size=\"4\">EventName</p></th><th><p style=\"color: ghostwhite;\"><font size=\"4\">Status</p></th></thead>"
+                    $("#events_approved_table").append(header);
+
+                    for (var i = 0; i < events.length; i++) {
+                        var eventname = events[i].eventname;
+                        var tdata = "<tr style=\"background: ghostwhite;\"><td><p><font size=\"4\" color=#363939>" + eventname + "</font></p></td><td><font size=\"4\" color=#363939>Approved</td></font></tr>";
+
+                        $("#events_approved_table").prepend(tdata);
+                        console.log(eventname);
+                        console.log(tdata);
+
+                    }
+
+                }
+            });
+
+
+
+
+            //.........................................................................................
+
+
             $(function() {
 
                 $("#dropdown-menu1 li a").click(function() {
@@ -824,7 +899,6 @@
                     var header = "<thead style=\"background-color: #363939;\"><th colspan=\"2\"><p  style=\"color: ghostwhite;\"><font size=\"4\">EventName</p></th><th><p style=\"color: ghostwhite;\"><font size=\"4\">Event Description</p></th><th><p  style=\"color: ghostwhite;\"><font size=\"4\">Starts on</p></th><th><p  style=\"color: ghostwhite;\"><font size=\"4\">Starts at</p></th><th><p  style=\"color: ghostwhite;\"><font size=\"4\">Ends on</p></th><th><p  style=\"color: ghostwhite;\"><font size=\"4\">Ends at</p></th><th><p  style=\"color: ghostwhite;\"><font size=\"4\">Status</p></th></thead>";
                     $("#events_table").append(header);
 
-
                     for (var i = events.length - 1; i >= 0; i--) {
                         var eventname = events[i].eventname;
                         var eventdesc = events[i].eventdesc;
@@ -852,13 +926,17 @@
                             url: '/findStatus',
                             success: function(data) {
                                 status = data[0].status;
-                                console.log(status);
+                                console.log("Clicked event status .............456789087654356789 .,........."+ status);
+                                
+                                console.log("...............4444............" + data);
 
                                 flag = 1;
-                                var tdata = "<tr style=\"background: ghostwhite;\"><td><p><font size=\"4\" color=#363939>" + eventname + "</font></p></td><td colspan=\"2\"><p><font size=\"4\" color=#363939>" + eventdesc + "</p></td><td><p><font size=\"4\" color=#363939>" + startdate_final + "</p></td><p>&nbsp; &#64; </p> <td><p><font size=\"4\" color=#363939>" + starttime + "</p></td><p>&nbsp; &#64;</p><td><p><font size=\"4\" color=#363939>" + enddate_final + "</p></td><td><p><font size=\"4\" color=#363939>" + endtime + "</p></td>" + "<td><font size=\"4\" color=#363939>" + status + "</td></font></tr>";
+                                if (status != "Requested") {
+                                    var tdata = "<tr style=\"background: ghostwhite;\"><td><p><font size=\"4\" color=#363939>" + eventname + "</font></p></td><td colspan=\"2\"><p><font size=\"4\" color=#363939>" + eventdesc + "</p></td><td><p><font size=\"4\" color=#363939>" + startdate_final + "</p></td><p>&nbsp; &#64; </p> <td><p><font size=\"4\" color=#363939>" + starttime + "</p></td><p>&nbsp; &#64;</p><td><p><font size=\"4\" color=#363939>" + enddate_final + "</p></td><td><p><font size=\"4\" color=#363939>" + endtime + "</p></td>" + "<td><font size=\"4\" color=#363939>" + status + "</td></font></tr>";
 
-                                $("#events_table").prepend(tdata);
-                                console.log(eventname);
+                                    $("#events_table").prepend(tdata);
+                                    console.log(eventname);
+                                } 
                             }
                         });
 
@@ -868,7 +946,7 @@
 
                         if (flag == 0) {
 
-                            var tdata = "<tr style=\"background: ghostwhite;\"><td><p><font size=\"4\" color=#363939>" + eventname + "</font></p></td><td colspan=\"2\"><p><font size=\"4\" color=#363939>" + eventdesc + "</p></td><td><p><font size=\"4\" color=#363939>" + startdate_final + "</p></td><p>&nbsp; &#64; </p> <td><p><font size=\"4\" color=#363939>" + starttime + "</p></td><p>&nbsp; &#64;</p><td><p><font size=\"4\" color=#363939>" + enddate_final + "</p></td><td><p><font size=\"4\" color=#363939>" + endtime + "</p></td>" + "<td id=\"status>"+i+"\"><font size=\"4\" color=#363939>" + status + "</td></font></tr>";
+                            var tdata = "<tr style=\"background: ghostwhite;\"><td><p><font size=\"4\" color=#363939>" + eventname + "</font></p></td><td colspan=\"2\"><p><font size=\"4\" color=#363939>" + eventdesc + "</p></td><td><p><font size=\"4\" color=#363939>" + startdate_final + "</p></td><p>&nbsp; &#64; </p> <td><p><font size=\"4\" color=#363939>" + starttime + "</p></td><p>&nbsp; &#64;</p><td><p><font size=\"4\" color=#363939>" + enddate_final + "</p></td><td><p><font size=\"4\" color=#363939>" + endtime + "</p></td>" + "<td id=\"status>" + i + "\"><font size=\"4\" color=#363939>" + status + "</td></font></tr>";
 
                             $("#events_table").prepend(tdata);
                             console.log(eventname);
@@ -882,7 +960,7 @@
                     $('#events_table').find('tr').click(function() {
 
                         var i = $(this).index();
-                        
+
                         var username_request = localStorage.getItem("username_local");
                         var eventname_request = events[i].eventname;
                         var data = {
@@ -908,8 +986,7 @@
 
                                 if (data_received[0].capacity == 0) {
                                     alert(data_received[0].eventname + " is full");
-                                }
-                                if (data_received[0].capacity > 0) {
+                                } else if (data_received[0].capacity > 0) {
 
                                     var username_request = localStorage.getItem("username_local");
                                     var eventname_request = events[i].eventname;
@@ -927,10 +1004,10 @@
                                         success: function(dataX) {
                                             console.log("inside request event call back");
                                             console.log(dataX);
-                                            
-                                            document.getElementById("status"+i).innerHTML = "Requested";
 
-                                            //alert(data_new[0].username_request + " " + data_new[0].eventname_request);
+                                            document.getElementById("status" + i).innerHTML = "Requested";
+                                            //$("#eventrequestedmodal").modal('show');
+                                            alert(data_new[0].username_request + " " + data_new[0].eventname_request);
                                             window.location.pathname = "/home"
 
                                         }

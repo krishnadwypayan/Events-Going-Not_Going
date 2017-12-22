@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="">
 
@@ -7,26 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NotifyMe</title>
     <link rel="icon" type="image/gif/png" href="datelogo.png">
-    <!-- Bootstrap CSS -->
-
-    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
-
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -243,39 +230,37 @@
 
 </head>
 
-<body>
+<body style="background: url('homeback.jpg'); background-repeat: no-repeat; background-size: cover;">
 
 
-    <div class="container above" style="background: white;">
+    <div class="container above" style="background:transparent;">
     </div>
     <!--nav bar-->
-    <nav class="navbar navbar-light" data-spy="affix" data-offset-top="20" style="margin-bottom: 1em; margin-top: -0.1em;">
-        <div class="container-fluid" style="background-color: white;">
+    <nav class="navbar navbar-light myelement" data-spy="affix" data-offset-top="10" style="margin-bottom: 0.5em;">
+        <div class="container-fluid" style="background: transparent; margin: 0.5em;">
             <div class="navbar-header">
-                <!--href to register page-->
-                <!--                <a class="navbar-brand" href="/public/index.html">-->
                 <img style="display: inline-block; height: 3em; width: 3em; margin-top: -0.8em;" src="datelogo.png">
-                <!--                    <i style="display: inline-block; margin-right: 1.5em;" class="glyphicon glyphicon-calendar"></i>-->
+
                 <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
             </div>
             <div>
                 <ul class="nav navbar-nav mr-auto pull-right" style="display: inline-block;">
                     <li>
-                        <button type="button" id="home_navbar_btn" class="btn btn-default" style="background-color: white; color: #09609f; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50;">Home</button>
+                        <button type="button" id="home_navbar_btn" class="btn btn-default" style="background:transparent; color: #09609f; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50;">Home</button>
                     </li>
                     <li>
-                        <button type="button" id="profile_name" class="btn btn-default" style="background-color: white; color: #05a30c; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Guest</button>
+                        <button type="button" id="profile_name" class="btn btn-default" style="background:transparent; color: #05a30c; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Guest</button>
                     </li>
                     <li>
-                        <button type="button" id="calendar" class="btn btn-default" style="background-color: white; color: #088b82; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Calendar</button>
-                    </li>
-
-                    <li>
-                        <button type="button" id="logout_navbar_btn" class="btn btn-default" style="background-color: white; color: #f70707; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Log Out</button>
+                        <button type="button" id="calendar" class="btn btn-default" style="background:transparent; color: #088b82; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Calendar</button>
                     </li>
 
                     <li>
-                        <button type="button" id="contact_us" class="btn btn-default" style="background-color: white; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Contact Us</button>
+                        <button type="button" id="logout_navbar_btn" class="btn btn-default" style="background:transparent; color: #f70707; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Log Out</button>
+                    </li>
+
+                    <li>
+                        <button type="button" id="contact_us" class="btn btn-default" style="background:transparent; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Contact Us</button>
                     </li>
 
                 </ul>
@@ -288,7 +273,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="eventModal" role="dialog">
+    <div class="modal fade" id="eventcreatedmodal" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -296,16 +281,13 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <center>
-                        <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
-                        <!--                    <i style="display: inline-block; margin-right: 1.5em;" class="glyphicon glyphicon-calendar"></i>-->
-                        <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
+                        <img style="display: inline-block; height: 3em; width: 3em; margin-top: -0.5em;" src="datelogo.png">
+                        <span style="display: inline-block; font: bold 36px 'Cookie', cursive;"><font size="6" color="black">NotifyMe</font></span>
                     </center>
                 </div>
                 <div class="modal-body">
-                    <h4 class="modal-title">Event Created</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="eventModal_btn" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Home</button>
+                    <h4 class="modal-title">Event successfully created!</h4>
+                    <p style="margin: 1.5em;">Welcome to your event!</p>
                 </div>
             </div>
 
@@ -317,24 +299,17 @@
 
     <center>
         <!-- Hero section -->
-        <div style="background: url('createevent.png'); margin-top: -0.5em;">
-            <div class="container--flex">
+        <div style="margin-top: -0.5em;"  style="background: transparent; opacity: 1;">
+            <div class="container--flex"  style="background: transparent; opacity: 1;">
 
-                <div class="card">
+                <div class="card" style="background: transparent; opacity: 1;">
                     <div style="display:none;"></div>
-                    <div style="width:400px; height: 72em;">
+                    <div style="width:400px; height: 72em; background: transparent; opacity: 1;">
                         <div class="card-block">
                             <p class="card-title" id="event_name_card1">
-                                <font size="6" color="ghostwhite">Create Event</font>
+                                <font size="6" color="black">Create Event</font>
                             </p>
                         </div>
-
-                        <!--
-                                <div class="input-group" style="margin: 1.5em;">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input class="form-control" id="event_username" type="text" value="" placeholder="Username" data-placement="right" style="min-width: 100%;" required/>
-                                </div>
--->
 
                         <li class="list-group-item">
 
@@ -475,32 +450,13 @@
         $(document).ready(function() {
 
             console.log("login document ready");
-//
-//            $('#start_date').datepicker({
-//                format: 'dd M yyyy',
-//                endDate: '+0d',
-//                autoclose: true,
-//                showButtonPanel: true,
-//                todayBtn: 'linked'
-//            }).on('change', function() {
-//                jQuery('.datepicker').hide();
-//                jQuery('#start_date').attr('value', jQuery('#start_date').val());
-//            });
-//            $('#end_date').datepicker();
-
-//
-//
-//            $('.timepicker').timepicker({
-//                timeFormat: 'h:mm p',
-//                interval: 15,
-//                minTime: '10',
-//                maxTime: '11:00pm',
-//                defaultTime: '11',
-//                startTime: '10:00',
-//                dynamic: true,
-//                dropdown: true,
-//                scrollbar: true,
-//            });
+            
+            $(document).on('scroll', function(e) {
+                if ($(window).width() > 992) {
+                    var rgba = $(document).scrollTop() / 500;
+                    $('.navbar').css('background-color', 'rgba(255,255,255,' + rgba + ')');
+                }
+            });
 
 
             $("#create_event_btn").click(function() {
@@ -534,21 +490,16 @@
                 };
 
                 console.log(data.capacity + " " + data.contact + " " + data.location);
-                //alert(eventname + eventdesc + startdate + starttime + enddate + endtime);
 
                 $.ajax({
                     type: 'POST',
                     url: '/create_event',
                     data: data,
                     success: function(data) {
-                        //do something with the data via front-end framework
-                        //location.reload();
-                        //renderHtml(data);
+
                         console.log("inside create event call back");
                         console.log(data);
-
-                        //window.location.pathname = "/home"
-                        //$("#signupModal").modal('show');
+                        $("#eventcreatedmodal").modal('show');
                     }
                 });
 
@@ -569,8 +520,7 @@
                 $.ajax({
                     type: 'GET',
                     url: '/calendar',
-                    success: function(data) { //do something with the data via front-end framework //location.reload(); //renderHtml(data); 
-
+                    success: function(data) {
                         window.location.pathname = "/calendar"
                     }
                 });
@@ -582,7 +532,7 @@
                 $.ajax({
                     type: 'GET',
                     url: '/register',
-                    success: function(data) { //do something with the data via front-end framework //location.reload(); //renderHtml(data); 
+                    success: function(data) {
 
                         window.location.pathname = "/register"
                     }
@@ -648,7 +598,7 @@
 
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
 </body>
 
 </html>

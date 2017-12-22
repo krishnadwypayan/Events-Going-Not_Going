@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html>
 
 <head>
@@ -10,35 +11,29 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
 
-    <!--
-    <script src="//code.jquery.com/jquery.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.js"></script>
--->
-
     <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.min.css" rel="stylesheet" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.print.css" rel="stylesheet" media="print" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.0/fullcalendar.min.js"></script>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="footer, address, phone, icons" />
+
 
 
 
     <style>
-        .starter-template {
-            padding: 40px 15px;
-            text-align: center;
-        }
-
-        .calendar-container {
+        .jumbotron {
             position: relative;
-            background: #000 url("jumbo1.jpg") center center;
+            /*            background: #000 url("jumbo1.jpg");*/
+            background: transparent;
             width: 100%;
             height: 100%;
             background-size: cover;
             overflow: hidden;
             background-blend-mode: lighten;
+            margin-bottom: -30px;
         }
 
         .above {
@@ -56,70 +51,325 @@
             padding-top: 0px;
         }
 
+        .modal-body {
+            overflow-y: inherit;
+            z-index: 9999;
+        }
+
+        .input-group {
+            overflow-y: inherit;
+            z-index: 9999 !important;
+        }
+
+        .col-sm-4 {
+            width: 31.833333%;
+            margin: 0.5%;
+        }
+
+
+        .myelement {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .special-card {
+            background-color: rgba(245, 245, 245, 1);
+            opacity: .4;
+            font-weight: 400;
+        }
+
+
+
+        .footer-distributed {
+            background-color: #ffffff;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+            box-sizing: border-box;
+            width: 100%;
+            text-align: left;
+            font: bold 16px sans-serif;
+
+            padding: 55px 50px;
+            margin-top: 0px;
+        }
+
+        .footer-distributed .footer-left,
+        .footer-distributed .footer-center,
+        .footer-distributed .footer-right {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        /* Footer left */
+
+        .footer-distributed .footer-left {
+            width: 40%;
+        }
+
+        /* The company logo */
+
+        .footer-distributed h3 {
+            color: #000000;
+            font: normal 36px 'Cookie', cursive;
+            margin: 0;
+        }
+
+        .footer-distributed h3 span {
+            color: #5383d3;
+        }
+
+        /* Footer links */
+
+        .footer-distributed .footer-links {
+            color: #000000;
+            margin: 20px 0 12px;
+            padding: 0;
+        }
+
+        .footer-distributed .footer-links a {
+            display: inline-block;
+            line-height: 1.8;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .footer-distributed .footer-company-name {
+            color: #8f9296;
+            font-size: 14px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        /* Footer Center */
+
+        .footer-distributed .footer-center {
+            width: 35%;
+        }
+
+        .footer-distributed .footer-center i {
+            background-color: #33383b;
+            color: #ffffff;
+            font-size: 25px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 42px;
+            margin: 10px 15px;
+            vertical-align: middle;
+        }
+
+        .footer-distributed .footer-center i.fa-envelope {
+            font-size: 17px;
+            line-height: 38px;
+        }
+
+        .footer-distributed .footer-center p {
+            display: inline-block;
+            color: #000000;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        .footer-distributed .footer-center p span {
+            display: block;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        .footer-distributed .footer-center p a {
+            color: #5383d3;
+            text-decoration: none;
+            ;
+        }
+
+
+        /* Footer Right */
+
+        .footer-distributed .footer-right {
+            width: 20%;
+        }
+
+        .footer-distributed .footer-company-about {
+            line-height: 20px;
+            color: #92999f;
+            font-size: 13px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .footer-distributed .footer-company-about span {
+            display: block;
+            color: #000000;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .footer-distributed .footer-icons {
+            margin-top: 25px;
+        }
+
+        .footer-distributed .footer-icons a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            background-color: #33383b;
+            border-radius: 2px;
+
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+            line-height: 35px;
+
+            margin-right: 3px;
+            margin-bottom: 5px;
+        }
+
+        /* If you don't want the footer to be responsive, remove these media queries */
+
+        @media (max-width: 880px) {
+
+            .footer-distributed {
+                font: bold 14px sans-serif;
+            }
+
+            .footer-distributed .footer-left,
+            .footer-distributed .footer-center,
+            .footer-distributed .footer-right {
+                display: block;
+                width: 100%;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+
+            .footer-distributed .footer-center i {
+                margin-left: 0;
+            }
+
+            .fc-event,
+            .fc-agenda .fc-event-time,
+            .fc-event a {
+                background-color: black;
+                /* background color */
+                border-color: black;
+                /* border color */
+                color: red;
+                /* text color */
+            }
+
+
+        }
+
     </style>
 
 
 </head>
 
-<body>
+<body style="background: url('homeback.jpg'); background-repeat: no-repeat; background-size: 100%;">
 
-    <div class="container above">
+    <div class="container above" style="background: transparent;">
     </div>
     <!--nav bar-->
 
-    <nav class="navbar navbar-light" data-spy="affix" data-offset-top="10">
-        <div class="container-fluid" style="background-color: white;">
+    <nav class="navbar navbar-light myelement" data-spy="affix" data-offset-top="10" style="margin-bottom: 0.5em;">
+        <div class="container-fluid" style="background: transparent; margin: 0.5em;">
             <div class="navbar-header">
-                <!--href to register page-->
-                <!--                <a class="navbar-brand" href="/public/index.html">-->
-                <img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png">
-                <!--                    <i style="display: inline-block; margin-right: 1.5em;" class="glyphicon glyphicon-calendar"></i>-->
-                <span style="display: inline-block;"><font size="5" color="black">NotifyMe</font></span>
+                <img style="display: inline-block; height: 3em; width: 3em; margin-top: -0.5em;" src="datelogo.png">
+                <span style="display: inline-block; font: bold 36px 'Cookie', cursive;"><font size="6.5" color="black">NotifyMe</font></span>
             </div>
-            <div>
-                <ul class="nav navbar-nav mr-auto" style="margin-top: -1.8em; margin-left: 50em; display: inline-block; margin-bottom: 0.5em;">
-                    <li>
-                        <button type="button" id="home_navbar_btn" class="btn btn-default" style="background-color: white; color: #09609f; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50;">Home</button>
-                    </li>
-                    <li>
-                        <button type="button" id="create_event_navbar_btn" class="btn btn-default" style="background-color: white; color: #09609f; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Create Event</button>
-                    </li>
-                    <li>
-                        <button type="button" id="profile_name" class="btn btn-default" style="background-color: white; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Guest</button>
-                    </li>
 
-                    <li>
-                        <button type="button" id="logout_navbar_btn" class="btn btn-default" style="background-color: white; color: #ae1d1d; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Log Out</button>
-                    </li>
-                </ul>
-            </div>
+            <ul class="nav navbar-nav mr-auto pull-right" style="display: inline-block; margin-bottom: 0.5em;">
+                <div>
+                    <ul class="nav navbar-nav mr-auto" style="margin-top: -1.8em; margin-left: 50em; display: inline-block; margin-bottom: 0.5em;">
+                        <li>
+                            <button type="button" id="home_navbar_btn" class="btn btn-default" style="background: transparent; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50;">Home</button>
+                        </li>
+                        <li>
+                            <button type="button" id="create_event_navbar_btn" class="btn btn-default" style="background: transparent; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Create Event</button>
+                        </li>
+                        <li>
+                            <button type="button" id="profile_name" class="btn btn-default" style="background: transparent; color: #000000; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Guest</button>
+                        </li>
+
+                        <li>
+                            <button type="button" id="logout_navbar_btn" class="btn btn-default" style="background: transparent; color: #ae1d1d; border: 0.5px solid #4CAF50; hover:background-color: #4CAF50; margin-left: 1em;">Log Out</button>
+                        </li>
+                    </ul>
+                </div>
+            </ul>
+
         </div>
     </nav>
 
 
 
     <div style="margin: 5em; margin-top: -1em;">
-        <div class="container calendar-container" style="background:#defce1;">
+        <div class="container calendar-container" style="background:white; opacity: 1;">
             <div id='calendar' class="fc-view-container" style="margin: 1em;"></div>
         </div>
     </div>
 
-    <!--
-    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
-    <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
-    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
-    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
--->
+    <footer class="footer-distributed" id="footer_section">
 
-    <!--
-    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
-    <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
-    <script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
-    <link rel='stylesheet' href='https://fullcalendar.io/js/fullcalendar-3.1.0/fullcalendar.min.css' />
--->
+        <div class="footer-left">
+
+            <span><img style="display: inline-block; height: 3em; width: 3em; margin-top: -1em;" src="datelogo.png"></span>
+            <h3>NotifyMe</h3>
+
+            <p class="footer-company-name" style="margin-top: 1em;">NotifyMe &copy; 2017</p>
+        </div>
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>IIIT Hyderabad, Gachibowli</span> Hyderabad, India</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+91 987654321</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p>support@notifyme.com</p>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>About the company</span> Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            </p>
+
+            <div class="footer-icons">
+
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+
+            </div>
+
+        </div>
+
+    </footer>
 
     <script>
         $(document).ready(function() {
+
+
+            $(document).on('scroll', function(e) {
+                if ($(window).width() > 992) {
+                    var rgba = $(document).scrollTop() / 500;
+                    $('.navbar').css('background-color', 'rgba(255,255,255,' + rgba + ')');
+                }
+            });
+
+
             $('#calendar').fullCalendar({
                 height: 600,
                 contentHeight: 500,
@@ -175,7 +425,7 @@
                 $.ajax({
                     type: 'GET',
                     url: '/createEvent',
-                    success: function(data) { //do something with the data via front-end framework //location.reload(); //renderHtml(data); 
+                    success: function(data) {
 
                         window.location.pathname = "/createEvent"
                     }
@@ -189,7 +439,7 @@
                 $.ajax({
                     type: 'GET',
                     url: '/register',
-                    success: function(data) { //do something with the data via front-end framework //location.reload(); //renderHtml(data); 
+                    success: function(data) {
 
                         window.location.pathname = "/register"
                     }
@@ -230,8 +480,6 @@
                 });
                 return false;
             });
-
-
 
         });
 
