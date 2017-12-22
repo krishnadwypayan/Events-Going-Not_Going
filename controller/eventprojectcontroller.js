@@ -207,6 +207,7 @@ module.exports = function (app) {
         //console.log(req.body.password);
 
         var eventname_find = req.body.eventname_request;
+        console.log("________________________________ " + eventname_find);
 
         CreateEvent.find({
             eventname: eventname_find
@@ -327,8 +328,8 @@ module.exports = function (app) {
     });
 
 
-    app.get('/contactus', function (req, res) {
-        res.render('footer');
+    app.get('/calJuhi', function (req, res) {
+        res.render('calJuhi');
     });
 
     
@@ -338,10 +339,20 @@ module.exports = function (app) {
             eventname: req.body.eventname,
             username: req.body.username
         }).then(function (result) {
-            console.log("status found is " + result.status);
-            res.json(result);
+            
+            res.render('homepage');
         });
     });
 
+    
+    
+    app.post('/approvedList', urlencodedParser, function (req, res) {
+        approveUser.find({
+            user_attending: req.body.user_attending 
+        }).then(function (result) {
+            console.log("Fetching approved user details " + result);
+            res.json(result);
+        });
+    });
 
 };
